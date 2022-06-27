@@ -1,3 +1,4 @@
+import shutil
 import sys
 from pathlib import Path
 
@@ -23,6 +24,7 @@ def main(directory):
         contours = find_contours(file)
         output_path = output_root / file.stem
         output_path.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(file, output_path / ('original' + file.suffix))
         cv2.imwrite(str(output_path / ('contours' + file.suffix)), contours)
 
 
