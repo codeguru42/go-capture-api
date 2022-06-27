@@ -1,4 +1,3 @@
-import os
 import sys
 from pathlib import Path
 
@@ -16,13 +15,15 @@ def find_contours(filename):
 
 
 def main(directory):
-    if not os.path.exists('output'):
-        os.mkdir('output')
-    for file in os.listdir(directory):
+    output_path = Path('output')
+    if not output_path.exists():
+        output_path.mkdir()
+
+    input_path = Path(directory)
+    for file in input_path.glob('*'):
         print(file)
-        filename = os.fsdecode(file)
-        contours = find_contours(Path(directory) / filename)
-        cv2.imwrite(str(Path('output') / filename), contours)
+        contours = find_contours(file)
+        cv2.imwrite(str(output_path / file.name), contours)
 
 
 if __name__ == '__main__':
