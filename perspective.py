@@ -4,6 +4,10 @@ import cv2
 import numpy as np
 
 
+def dist(x1, x2, y1, y2):
+    return np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+
+
 def perspective_transform(image, corners):
     def order_corner_points(corners):
         # Separate corners into individual points
@@ -21,14 +25,14 @@ def perspective_transform(image, corners):
 
     # Determine width of new image which is the max distance between
     # (bottom right and bottom left) or (top right and top left) x-coordinates
-    width_bottom = np.sqrt(((bottom_r[0] - bottom_l[0]) ** 2) + ((bottom_r[1] - bottom_l[1]) ** 2))
-    width_top = np.sqrt(((top_r[0] - top_l[0]) ** 2) + ((top_r[1] - top_l[1]) ** 2))
+    width_bottom = dist(bottom_r[0], bottom_l[0], bottom_r[1], bottom_l[1])
+    width_top = dist(top_r[0], top_l[0], top_r[1], top_l[1])
     width = max(int(width_bottom), int(width_top))
 
     # Determine height of new image which is the max distance between
     # (top right and bottom right) or (top left and bottom left) y-coordinates
-    height_right = np.sqrt(((top_r[0] - bottom_r[0]) ** 2) + ((top_r[1] - bottom_r[1]) ** 2))
-    height_left = np.sqrt(((top_l[0] - bottom_l[0]) ** 2) + ((top_l[1] - bottom_l[1]) ** 2))
+    height_right = dist(top_r[0], bottom_r[0], top_r[1], bottom_r[1])
+    height_left = dist(top_l[0], bottom_l[0], top_l[1], bottom_l[1])
     height = max(int(height_right), int(height_left))
 
     # Construct new points to obtain top-down view of image in
