@@ -44,18 +44,16 @@ def get_corners(image):
     blur = cv2.medianBlur(gray, 3)
     thresh = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 3)
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    contours = sorted(contours, key=cv2.contourArea, reverse=True)
-    return contours
+    sorted_contours = sorted(contours, key=cv2.contourArea, reverse=True)
+    return sorted_contours[0]
 
 
 def main(filename):
     image = cv2.imread(filename)
-    cnts = get_corners(image)
-    for c in cnts:
-        peri = cv2.arcLength(c, True)
-        approx = cv2.approxPolyDP(c, 0.015 * peri, True)
-        transformed = perspective_transform(image, approx)
-        break
+    corners = get_corners(image)
+    peri = cv2.arcLength(corners, True)
+    approx = cv2.approxPolyDP(corners, 0.015 * peri, True)
+    transformed = perspective_transform(image, approx)
     cv2.imshow('transformed', transformed)
     cv2.imwrite('board.png', transformed)
     cv2.waitKey()
