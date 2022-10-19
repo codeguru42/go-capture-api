@@ -12,9 +12,9 @@ def main(filename):
     dx = width // 18
     dy = height // 18
     radius = dx // 4
-    for x in range(0, width, dx):
-        for y in range(0, height, dy):
-            cv2.circle(transformed, (x, y), radius, (0, 255, 0), cv2.FILLED)
+    for x in range(width):
+        for y in range(height):
+            cv2.circle(transformed, (x * dx, y * dy), radius, (0, 255, 0), cv2.FILLED)
     cv2.imshow('transformed', transformed)
     cv2.imwrite('board.png', transformed)
     cv2.waitKey()
