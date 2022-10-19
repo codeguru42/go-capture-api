@@ -5,6 +5,19 @@ import numpy as np
 
 import perspective
 
+NONE = 0
+BLACK = 1
+WHITE = 2
+
+
+def categorize(patch):
+    average = np.average(patch)
+    if average < 50:
+        return BLACK
+    elif average > 200:
+        return WHITE
+    return NONE
+
 
 def find_stones(board):
     width, height, _ = board.shape
@@ -17,10 +30,10 @@ def find_stones(board):
     for x in range(19):
         for y in range(19):
             patch = gray[y * dy - radius:y * dy + radius, x * dx - radius:x * dx + radius]
-            average = np.average(patch)
-            if average < 50:
+            stone = categorize(patch)
+            if stone == BLACK:
                 black.append((x, y))
-            elif average > 200:
+            elif stone == WHITE:
                 white.append((x, y))
     return black, white
 
