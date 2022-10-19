@@ -48,12 +48,17 @@ def get_corners(image):
     return sorted_contours[0]
 
 
-def main(filename):
-    image = cv2.imread(filename)
+def get_grid(image):
     corners = get_corners(image)
     peri = cv2.arcLength(corners, True)
     approx = cv2.approxPolyDP(corners, 0.015 * peri, True)
     transformed = perspective_transform(image, approx)
+    return transformed
+
+
+def main(filename):
+    image = cv2.imread(filename)
+    transformed = get_grid(image)
     cv2.imshow('transformed', transformed)
     cv2.imwrite('board.png', transformed)
     cv2.waitKey()
