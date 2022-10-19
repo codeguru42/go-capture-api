@@ -11,10 +11,16 @@ WHITE = 2
 
 
 def categorize(patch):
-    average = np.average(patch)
-    if average < 50:
+    width, height = patch.shape
+    pixels = np.float32(patch.reshape((width*height)))
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
+    flags = cv2.KMEANS_RANDOM_CENTERS
+    _, labels, palette = cv2.kmeans(pixels, 3, None, criteria, 10, flags)
+    _, counts = np.unique(labels, return_counts=True)
+    dominant = palette[np.argmax(counts)]
+    if dominant[0] < 50:
         return BLACK
-    elif average > 200:
+    elif dominant[0] > 200:
         return WHITE
     return NONE
 
