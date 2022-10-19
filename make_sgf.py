@@ -29,7 +29,11 @@ def find_stones(board):
     white = []
     for x in range(19):
         for y in range(19):
-            patch = gray[y * dy - radius:y * dy + radius, x * dx - radius:x * dx + radius]
+            top = y * dy - radius
+            bottom = y * dy + radius
+            left = x * dx - radius
+            right = x * dx + radius
+            patch = gray[max(0, top):min(bottom, height), max(0, left):min(right, width)]
             stone = categorize(patch)
             if stone == BLACK:
                 black.append((x, y))
