@@ -15,13 +15,11 @@ def perspective_transform(image, corners):
         #       1 - top-left
         #       2 - bottom-left
         #       3 - bottom-right
-        corners = [(corner[0][0], corner[0][1]) for corner in corners]
-        top_r, top_l, bottom_l, bottom_r = corners[0], corners[1], corners[2], corners[3]
+        top_r, top_l, bottom_l, bottom_r = [(corner[0][0], corner[0][1]) for corner in corners]
         return (top_l, top_r, bottom_r, bottom_l)
 
     # Order points in clockwise order
-    ordered_corners = order_corner_points(corners)
-    top_l, top_r, bottom_r, bottom_l = ordered_corners
+    top_l, top_r, bottom_r, bottom_l = order_corner_points(corners)
 
     # Determine width of new image which is the max distance between
     # (bottom right and bottom left) or (top right and top left) x-coordinates
@@ -40,7 +38,7 @@ def perspective_transform(image, corners):
     dimensions = np.array([[0, 0], [width - 1, 0], [width - 1, height - 1], [0, height - 1]], dtype="float32")
 
     # Convert to Numpy format
-    ordered_corners = np.array(ordered_corners, dtype="float32")
+    ordered_corners = np.array(order_corner_points(corners), dtype="float32")
 
     # Find perspective transform matrix
     matrix = cv2.getPerspectiveTransform(ordered_corners, dimensions)
