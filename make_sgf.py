@@ -11,7 +11,7 @@ WHITE = 2
 
 
 def categorize(patch):
-    width, height = patch.shape
+    height, width = patch.shape
     pixels = np.float32(patch.reshape((width*height)))
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
     flags = cv2.KMEANS_RANDOM_CENTERS
@@ -26,7 +26,7 @@ def categorize(patch):
 
 
 def find_stones(board):
-    width, height, _ = board.shape
+    height, width, _ = board.shape
     dx = width // 18
     dy = height // 18
     radius = dx // 4
