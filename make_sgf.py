@@ -12,7 +12,7 @@ WHITE = 2
 
 def categorize(patch):
     average = np.average(patch)
-    if average < 50:
+    if average < 60:
         return BLACK
     elif average > 180:
         return WHITE
