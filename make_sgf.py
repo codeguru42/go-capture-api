@@ -70,7 +70,7 @@ def main(filename):
 
         cv2.imshow('transformed', transformed)
         cv2.waitKey()
-        cv2.imwrite('board2.png', transformed)
+        cv2.imwrite('board.png', transformed)
     finally:
         cv2.destroyAllWindows()
 
