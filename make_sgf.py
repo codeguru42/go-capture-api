@@ -49,7 +49,7 @@ def find_stones(board):
 
 
 def draw_patches(image, coords, color):
-    width, height, _ = image.shape
+    height, width, _ = image.shape
     dx = width // 18
     dy = height // 18
     radius = dx // 4
