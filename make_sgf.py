@@ -35,11 +35,11 @@ def find_stones(board):
     white = []
     for x in range(19):
         for y in range(19):
-            top = y * dy - radius
-            bottom = y * dy + radius
-            left = x * dx - radius
-            right = x * dx + radius
-            patch = gray[max(0, top):min(bottom, height), max(0, left):min(right, width)]
+            top = max(0, y * dy - radius)
+            bottom = min(y * dy + radius, height)
+            left = max(0, x * dx - radius)
+            right = min(x * dx + radius, width)
+            patch = gray[top:bottom, left:right]
             stone = categorize(patch)
             if stone == BLACK:
                 black.append((x, y))
@@ -69,7 +69,7 @@ def main(filename):
 
         cv2.imshow('transformed', transformed)
         cv2.waitKey()
-        cv2.imwrite('board.png', transformed)
+        cv2.imwrite('board2.png', transformed)
     finally:
         cv2.destroyAllWindows()
 
