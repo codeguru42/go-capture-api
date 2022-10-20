@@ -48,6 +48,15 @@ def find_stones(board):
     return black, white
 
 
+def draw_patches(image, coords, color):
+    width, height, _ = image.shape
+    dx = width // 18
+    dy = height // 18
+    radius = dx // 4
+    for x, y in coords:
+        cv2.circle(image, (x * dx, y * dy), radius, color, cv2.FILLED)
+
+
 def main(filename):
     try:
         image = cv2.imread(filename)
@@ -58,14 +67,8 @@ def main(filename):
 
         black, white = find_stones(transformed)
 
-        width, height, _ = transformed.shape
-        dx = width // 18
-        dy = height // 18
-        radius = dx // 4
-        for x, y in black:
-            cv2.circle(transformed, (x * dx, y * dy), radius, (255, 0, 0), cv2.FILLED)
-        for x, y in white:
-            cv2.circle(transformed, (x * dx, y * dy), radius, (0, 255, 0), cv2.FILLED)
+        draw_patches(transformed, black, (255, 0, 0))
+        draw_patches(transformed, white, (0, 255, 0))
 
         cv2.imshow('transformed', transformed)
         cv2.waitKey()
