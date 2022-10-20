@@ -54,7 +54,11 @@ def draw_patches(image, coords, color):
     dy = height // 18
     radius = dx // 4
     for x, y in coords:
-        cv2.circle(image, (x * dx, y * dy), radius, color, cv2.FILLED)
+        top = max(0, y * dy - radius)
+        bottom = min(y * dy + radius, height)
+        left = max(0, x * dx - radius)
+        right = min(x * dx + radius, width)
+        cv2.rectangle(image, (left, top), (right, bottom), color, 2)
 
 
 def main(filename):
