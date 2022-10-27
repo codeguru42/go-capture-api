@@ -60,8 +60,9 @@ def main(filename):
         image = cv2.imread(filename)
         transformed = perspective.get_grid(image)
 
+        height, width, _ = transformed.shape
         cv2.namedWindow('transformed', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('transformed', 1000, 1000)
+        cv2.resizeWindow('transformed', int(width/3), int(height/3))
         cv2.imshow('transformed', transformed)
         cv2.waitKey()
 
