@@ -11,11 +11,10 @@ WHITE = 2
 
 
 def categorize(patch):
-    gray = cv2.cvtColor(patch, cv2.COLOR_BGR2GRAY)
-    average = np.average(gray)
-    if average < 60:
+    average = patch.mean(axis=0).mean(axis=0)
+    if np.all(average < 65):
         return BLACK
-    elif average > 180:
+    elif np.all(average > 180):
         return WHITE
     return NONE
 
