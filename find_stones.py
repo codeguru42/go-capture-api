@@ -68,7 +68,7 @@ def main(filename):
         black, white = find_stones(transformed)
 
         draw_patches(transformed, black, (255, 0, 0))
-        draw_patches(transformed, white, (0, 255, 0))
+        draw_patches(transformed, white, (0, 0, 255))
 
         cv2.imshow('transformed', transformed)
         cv2.waitKey()
