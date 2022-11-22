@@ -1,0 +1,9 @@
+POST http://localhost:8000/capture/
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="board.jpg"
+Content-Type: image/jpeg
+
+< ./images/whole_board/20220305_144247.jpg
+--WebAppBoundary--
