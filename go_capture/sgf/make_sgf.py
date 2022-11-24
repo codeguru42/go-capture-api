@@ -3,8 +3,8 @@ import sys
 
 import cv2
 
-import find_stones
-import perspective
+from . import find_stones
+from . import perspective
 
 
 def write_stones(file, stones):
