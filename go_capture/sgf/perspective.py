@@ -54,16 +54,3 @@ def get_grid(image):
     approx = cv2.approxPolyDP(corners, 0.015 * peri, True)
     transformed = perspective_transform(image, approx)
     return transformed
-
-
-def main(filename):
-    image = cv2.imread(filename)
-    transformed = get_grid(image)
-    cv2.imshow('transformed', transformed)
-    cv2.imwrite('board.png', transformed)
-    cv2.waitKey()
-    cv2.destroyAllWindows()
-
-
-if __name__ == '__main__':
-    main(sys.argv[1])

@@ -21,15 +21,3 @@ def make_sgf(filename, black, white):
         file.write('\n;AW')
         write_stones(file, white)
         file.write('\n)')
-
-
-def main(image_path):
-    image = cv2.imread(image_path)
-    board = perspective.get_grid(image)
-    black, white = find_stones.find_stones(board)
-    filename, _ = os.path.splitext(image_path)
-    make_sgf(filename + '.sgf', black, white)
-
-
-if __name__ == '__main__':
-    main(sys.argv[1])

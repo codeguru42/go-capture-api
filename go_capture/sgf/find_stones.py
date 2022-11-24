@@ -53,30 +53,3 @@ def draw_patches(image, coords, color):
         left = max(0, x * dx - radius)
         right = min(x * dx + radius, width)
         cv2.rectangle(image, (left, top), (right, bottom), color, 2)
-
-
-def main(filename):
-    try:
-        image = cv2.imread(filename)
-        transformed = perspective.get_grid(image)
-
-        height, width, _ = transformed.shape
-        cv2.namedWindow('transformed', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('transformed', int(width/3), int(height/3))
-        cv2.imshow('transformed', transformed)
-        cv2.waitKey()
-
-        black, white = find_stones(transformed)
-
-        draw_patches(transformed, black, (255, 0, 0))
-        draw_patches(transformed, white, (0, 0, 255))
-
-        cv2.imshow('transformed', transformed)
-        cv2.waitKey()
-        cv2.imwrite('board.png', transformed)
-    finally:
-        cv2.destroyAllWindows()
-
-
-if __name__ == '__main__':
-    main(sys.argv[1])
