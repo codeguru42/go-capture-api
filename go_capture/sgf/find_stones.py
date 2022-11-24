@@ -3,7 +3,7 @@ import sys
 import cv2
 import numpy as np
 
-import perspective
+from . import perspective
 
 NONE = 0
 BLACK = 1
