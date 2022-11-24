@@ -8,6 +8,7 @@ authors = ["Code-Apprentice <codeguru42@gmail.com>"]
 python = "^3.9"
 opencv-python = "^4.6.0"
 Django = "^4.1.3"
+environs = "^9.5.0"
 
 [tool.poetry.dev-dependencies]
 
