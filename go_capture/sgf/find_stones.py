@@ -1,9 +1,5 @@
-import sys
-
 import cv2
 import numpy as np
-
-from . import perspective
 
 NONE = 0
 BLACK = 1

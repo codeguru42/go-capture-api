@@ -1,12 +1,3 @@
-import os.path
-import sys
-
-import cv2
-
-from . import find_stones
-from . import perspective
-
-
 def write_stones(file, stones):
     for x, y in stones:
         file.write(f'[{chr(x + ord("a"))}{chr(y + ord("a"))}]')
