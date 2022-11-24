@@ -1,9 +1,12 @@
+import io
+
 import cv2
 import numpy as np
 from django.http import FileResponse
 from django.views.decorators.http import require_POST
 
 from go_capture.sgf import perspective, find_stones
+from go_capture.sgf.make_sgf import make_sgf
 
 
 @require_POST
@@ -13,6 +16,7 @@ def capture(request):
     image = cv2.imdecode(image_data, cv2.IMREAD_COLOR)
     board = perspective.get_grid(image)
     black, white = find_stones.find_stones(board)
-    find_stones.draw_patches(board, black, (0, 0, 255))
-    find_stones.draw_patches(board, white, (0, 0, 255))
-    return FileResponse(board, filename="board.jpg", status=201, as_attachment=True)
+    file = io.StringIO()
+    make_sgf(file, black, white)
+    file.seek(0)
+    return FileResponse(file.read(), status=201, as_attachment=True, content_type='application/x-go-sgf')
