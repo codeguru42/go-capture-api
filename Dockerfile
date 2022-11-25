@@ -1,8 +1,9 @@
-FROM python:3.11-alpine
+FROM python:3.11-slim-buster
 
-RUN apk add build-base
+RUN apt-get update
+RUN apt-get install libgl1 libglib2.0-0 -y
 
-RUN adduser -Ds /bin/bash api
+RUN useradd -ms /bin/bash api
 USER api
 
 WORKDIR /api
@@ -11,4 +12,4 @@ COPY pyproject.toml poetry.lock ./
 RUN python -m poetry install
 COPY . ./
 
-CMD python -m poetry run manage.py runserver
+CMD python -m poetry run python manage.py runserver
