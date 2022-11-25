@@ -8,8 +8,9 @@ USER api
 
 WORKDIR /api
 RUN pip install poetry==1.2.0
+ENV PATH=/home/api/.local/bin:${PATH}
 COPY pyproject.toml poetry.lock ./
-RUN python -m poetry install
+RUN poetry install
 COPY . ./
 
-CMD python -m poetry run python manage.py runserver
+CMD poetry run python manage.py runserver
