@@ -7,8 +7,7 @@ WHITE = 2
 
 
 def categorize(patch):
-    gray = cv2.cvtColor(patch, cv2.COLOR_BGR2GRAY)
-    average = np.average(gray)
+    average = np.average(patch)
     if average < 60:
         return BLACK
     elif average > 180:
@@ -17,6 +16,7 @@ def categorize(patch):
 
 
 def find_stones(board):
+    gray = cv2.cvtColor(board, cv2.COLOR_BGR2GRAY)
     height, width, _ = board.shape
     dx = width // 18
     dy = height // 18
@@ -30,7 +30,7 @@ def find_stones(board):
             bottom = min(y * dy + patch_height, height)
             left = max(0, x * dx - patch_width)
             right = min(x * dx + patch_width, width)
-            patch = board[top:bottom, left:right]
+            patch = gray[top:bottom, left:right]
             stone = categorize(patch)
             if stone == BLACK:
                 black.append((x, y))
