@@ -20,15 +20,16 @@ def find_stones(board):
     height, width, _ = board.shape
     dx = width // 18
     dy = height // 18
-    radius = dx // 4
+    patch_width = dx // 4
+    patch_height = dy // 4
     black = []
     white = []
     for x in range(19):
         for y in range(19):
-            top = max(0, y * dy - radius)
-            bottom = min(y * dy + radius, height)
-            left = max(0, x * dx - radius)
-            right = min(x * dx + radius, width)
+            top = max(0, y * dy - patch_height)
+            bottom = min(y * dy + patch_height, height)
+            left = max(0, x * dx - patch_width)
+            right = min(x * dx + patch_width, width)
             patch = board[top:bottom, left:right]
             stone = categorize(patch)
             if stone == BLACK:
@@ -42,10 +43,11 @@ def draw_patches(image, coords, color):
     height, width, _ = image.shape
     dx = width // 18
     dy = height // 18
-    radius = dx // 4
+    patch_width = dx // 4
+    patch_height = dy // 4
     for x, y in coords:
-        top = max(0, y * dy - radius)
-        bottom = min(y * dy + radius, height)
-        left = max(0, x * dx - radius)
-        right = min(x * dx + radius, width)
+        top = max(0, y * dy - patch_height)
+        bottom = min(y * dy + patch_height, height)
+        left = max(0, x * dx - patch_width)
+        right = min(x * dx + patch_width, width)
         cv2.rectangle(image, (left, top), (right, bottom), color, 2)
