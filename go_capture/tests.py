@@ -13,7 +13,7 @@ def get_images(image_folder):
         yield image_filename
 
 
-@pytest.mark.parametrize('image_filename', list(get_images('../images/whole_board')), ids=str)
+@pytest.mark.parametrize('image_filename', list(get_images('../images/whole_board')), ids=lambda x: x.stem)
 def test_whole_board(image_filename):
     image = cv2.imread(str(image_filename))
     board = perspective.get_grid(image)
