@@ -1,3 +1,4 @@
+import io
 import unittest
 from pathlib import Path
 
@@ -18,6 +19,10 @@ class FindStonesTests(unittest.TestCase):
             image = cv2.imread(str(input_filename))
             board = perspective.get_grid(image)
             black, white = find_stones.find_stones(board)
-            output_file = output_path / (input_filename.stem + '.sgf')
-            with output_file.open('w') as output_file:
-                make_sgf.make_sgf(output_file, black, white)
+            out_stream = io.StringIO()
+            make_sgf.make_sgf(out_stream, black, white)
+            expected_path = Path('expected') / (input_filename.stem + '.sgf')
+            with expected_path.open() as expected_file:
+                expected = expected_file.readlines()
+            out_stream.seek(0)
+            self.assertEqual(''.join(expected), out_stream.read())
