@@ -59,7 +59,7 @@ def get_cutoffs(image):
     pixels = np.float32(image.reshape((width*height)))
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
     flags = cv2.KMEANS_RANDOM_CENTERS
-    _, labels, palette = cv2.kmeans(pixels, 3, None, criteria, 10, flags)
+    _, labels, palette = cv2.kmeans(pixels, 4, None, criteria, 10, flags)
     centers = np.uint8(palette)
     labels = labels.flatten()
     segmented_image = centers[labels.flatten()]
