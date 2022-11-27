@@ -10,4 +10,4 @@ def make_sgf(file, black, white):
     write_stones(file, black)
     file.write('\n;AW')
     write_stones(file, white)
-    file.write('\n)')
+    file.write('\n)\n')
