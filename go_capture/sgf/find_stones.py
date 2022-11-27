@@ -6,17 +6,18 @@ BLACK = 1
 WHITE = 2
 
 
-def categorize(patch):
+def categorize(patch, cutoff_black, cutoff_white):
     average = np.average(patch)
-    if average < 60:
+    if average < cutoff_black:
         return BLACK
-    elif average > 180:
+    elif average > cutoff_white:
         return WHITE
     return NONE
 
 
 def find_stones(board):
     gray = cv2.cvtColor(board, cv2.COLOR_BGR2GRAY)
+    cutoff_black, cutoff_white = get_cutoffs(gray)
     height, width, _ = board.shape
     dx = width // 18
     dy = height // 18
@@ -31,7 +32,7 @@ def find_stones(board):
             left = max(0, x * dx - patch_width)
             right = min(x * dx + patch_width, width)
             patch = gray[top:bottom, left:right]
-            stone = categorize(patch)
+            stone = categorize(patch, cutoff_black, cutoff_white)
             if stone == BLACK:
                 black.append((x, y))
             elif stone == WHITE:
@@ -51,3 +52,12 @@ def draw_patches(image, coords, color):
         left = max(0, x * dx - patch_width)
         right = min(x * dx + patch_width, width)
         cv2.rectangle(image, (left, top), (right, bottom), color, 2)
+
+
+def get_cutoffs(image):
+    width, height = image.shape
+    pixels = np.float32(image.reshape((width*height)))
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
+    flags = cv2.KMEANS_RANDOM_CENTERS
+    _, labels, palette = cv2.kmeans(pixels, 3, None, criteria, 10, flags)
+    return np.min(palette), np.max(palette)
