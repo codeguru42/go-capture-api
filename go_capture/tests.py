@@ -3,7 +3,7 @@ from pathlib import Path
 
 import cv2
 
-from go_capture.sgf import find_stones, make_sgf
+from go_capture.sgf import find_stones, make_sgf, perspective
 
 
 class FindStonesTests(unittest.TestCase):
@@ -16,7 +16,8 @@ class FindStonesTests(unittest.TestCase):
         for input_filename in input_path.glob('*'):
             print(input_filename)
             image = cv2.imread(str(input_filename))
-            black, white = find_stones.find_stones(image)
+            board = perspective.get_grid(image)
+            black, white = find_stones.find_stones(board)
             output_file = output_path / (input_filename.stem + '.sgf')
             with output_file.open('w') as output_file:
                 make_sgf.make_sgf(output_file, black, white)
