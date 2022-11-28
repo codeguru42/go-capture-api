@@ -23,8 +23,8 @@ def find_stones(board):
     height, width, _ = board.shape
     dx = width // 18
     dy = height // 18
-    patch_width = dx // 4
-    patch_height = dy // 4
+    patch_width = dx // 2
+    patch_height = dy // 2
     black = []
     white = []
     for x in range(19):
@@ -46,8 +46,8 @@ def draw_patches(image, coords, color):
     height, width, _ = image.shape
     dx = width // 18
     dy = height // 18
-    patch_width = dx // 4
-    patch_height = dy // 4
+    patch_width = dx // 2
+    patch_height = dy // 2
     for x, y in coords:
         top = max(0, y * dy - patch_height)
         bottom = min(y * dy + patch_height, height)
