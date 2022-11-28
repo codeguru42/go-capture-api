@@ -24,4 +24,4 @@ def test_whole_board(image_filename):
     with expected_path.open() as expected_file:
         expected = expected_file.readlines()
     out_stream.seek(0)
-    assert ''.join(expected) == out_stream.read()
+    assert out_stream.read() == ''.join(expected)
