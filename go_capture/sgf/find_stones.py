@@ -6,18 +6,19 @@ BLACK = 1
 WHITE = 2
 
 
-def categorize(patch, cutoff_black, cutoff_white):
-    average = np.average(patch)
-    if average < cutoff_black:
+def categorize(patch, label_black, label_white):
+    labels, counts = np.unique(patch, return_counts=True)
+    label_max = labels[np.argmax(counts)]
+    if label_max == label_black:
         return BLACK
-    elif average > cutoff_white:
+    elif label_max == label_white:
         return WHITE
     return NONE
 
 
 def find_stones(board):
     gray = cv2.cvtColor(board, cv2.COLOR_BGR2GRAY)
-    cutoff_black, cutoff_white = get_cutoffs(gray)
+    labeled_image, label_black, label_white = get_clusters(gray)
     height, width, _ = board.shape
     dx = width // 18
     dy = height // 18
@@ -31,8 +32,8 @@ def find_stones(board):
             bottom = min(y * dy + patch_height, height)
             left = max(0, x * dx - patch_width)
             right = min(x * dx + patch_width, width)
-            patch = gray[top:bottom, left:right]
-            stone = categorize(patch, cutoff_black, cutoff_white)
+            patch = labeled_image[top:bottom, left:right]
+            stone = categorize(patch, label_black, label_white)
             if stone == BLACK:
                 black.append((x, y))
             elif stone == WHITE:
@@ -54,15 +55,14 @@ def draw_patches(image, coords, color):
         cv2.rectangle(image, (left, top), (right, bottom), color, 2)
 
 
-def get_cutoffs(image):
+def get_clusters(image):
     width, height = image.shape
     pixels = np.float32(image.reshape((width*height)))
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
     flags = cv2.KMEANS_RANDOM_CENTERS
     _, labels, palette = cv2.kmeans(pixels, 4, None, criteria, 10, flags)
     centers = np.uint8(palette)
-    labels = labels.flatten()
-    segmented_image = centers[labels.flatten()]
-    segmented_image = segmented_image.reshape(image.shape)
-    cv2.imwrite('segments.png', segmented_image)
-    return np.min(palette), np.max(palette)
+    labeled_image = centers[labels.flatten()]
+    clustered_image = labeled_image.reshape(image.shape)
+    cv2.imwrite('clusters.png', clustered_image)
+    return labels.reshape(image.shape), np.argmin(palette), np.argmax(palette)
