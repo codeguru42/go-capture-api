@@ -29,6 +29,7 @@ Resources:
             Condition:
               StringLike:
                 token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
+      Path: /gocapture/
 
   GithubOidc:
     Type: AWS::IAM::OIDCProvider
