@@ -16,6 +16,12 @@ jobs:
           role-to-assume: arn:aws:iam::200049542062:role/gocapture/GithubRole-Role-1MFLJT9KI2JDL
           aws-region: us-west-1
 
+      - name: Deploy ECR repository
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: GoCaptureECR
+          template: cloud-formation/ecr.yml
+
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
