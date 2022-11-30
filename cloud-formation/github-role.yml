@@ -73,6 +73,7 @@ Resources:
             ]
           }
           PolicyName: IamPolicy
+      RoleName: GithubRole
 
   GithubOidc:
     Type: AWS::IAM::OIDCProvider
