@@ -1,5 +1,5 @@
 Parameters:
-  GitHubOrg:
+  GithubOrg:
     Type: String
   RepositoryName:
     Type: String
@@ -28,7 +28,7 @@ Resources:
                 - !Ref OIDCProviderArn
             Condition:
               StringLike:
-                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
+                token.actions.githubusercontent.com:sub: !Sub repo:${GithubOrg}/${RepositoryName}:*
       Path: /gocapture/
       Policies:
         - PolicyDocument: {

@@ -21,7 +21,7 @@ jobs:
         with:
           name: GithubRole
           template: cloud-formation/github-role.yml
-          parameter-overrides: "GitHubOrg=${{ github.repository_owner }},RepositoryName=${{ github.repository }}"
+          parameter-overrides: "GithubOrg=${{ github.repository_owner }},RepositoryName=${{ github.repository }}"
           capabilities: CAPABILITY_NAMED_IAM
 
       - name: Deploy ECR repository
