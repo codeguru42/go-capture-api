@@ -61,6 +61,11 @@ Resources:
                 "Action": cloudformation:CreateStack,
                 "Resource": "*"
               },
+              {
+                "Effect": Allow,
+                "Action": cloudformation:DeleteChangeSet,
+                "Resource": "*"
+              },
             ]
           }
         - PolicyName: IamPolicy
