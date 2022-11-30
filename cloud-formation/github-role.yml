@@ -86,6 +86,11 @@ Resources:
                 "Action": ecr:CreateRepository,
                 "Resource": "*"
               },
+              {
+                "Effect": Allow,
+                "Action": ecr:GetAuthorizationToken,
+                "Resource": "*"
+              },
             ]
           }
           PolicyName: EcrPolicy
