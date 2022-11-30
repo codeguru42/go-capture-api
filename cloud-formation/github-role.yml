@@ -30,6 +30,16 @@ Resources:
               StringLike:
                 token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
       Path: /gocapture/
+      Policies:
+        - PolicyDocument: {
+            "Version": "2012-10-17",
+            "Statement": {
+              "Effect": Allow,
+              "Action": cloudformation:DescribeStacks,
+              "Resource": "*"
+            }
+          }
+          PolicyName: CloudFormationPolicy
 
   GithubOidc:
     Type: AWS::IAM::OIDCProvider
