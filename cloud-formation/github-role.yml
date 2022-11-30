@@ -75,6 +75,11 @@ Resources:
                 "Action": iam:GetRole,
                 "Resource": "*"
               },
+              {
+                "Effect": Allow,
+                "Action": iam:PutRoleRole,
+                "Resource": "*"
+              },
             ]
           }
           PolicyName: IamPolicy
