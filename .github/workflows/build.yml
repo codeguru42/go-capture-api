@@ -16,6 +16,12 @@ jobs:
           role-to-assume: arn:aws:iam::200049542062:role/gocapture/GithubRole-Role-1MFLJT9KI2JDL
           aws-region: us-west-1
 
+      - name: Deploy Github Role
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: GithubRole
+          template: cloud-formation/github-role.yml
+
       - name: Deploy ECR repository
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
