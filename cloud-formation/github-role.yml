@@ -14,7 +14,7 @@ Conditions:
     - ""
 
 Resources:
-  Role:
+  GithubRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -87,4 +87,4 @@ Resources:
 
 Outputs:
   Role:
-    Value: !GetAtt Role.Arn
+    Value: !GetAtt GithubRole.Arn
