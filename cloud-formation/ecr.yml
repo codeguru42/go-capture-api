@@ -6,5 +6,5 @@ Resources:
         EncryptionType: AES256
       ImageScanningConfiguration:
         ScanOnPush: true
-      RepositoryName: GoCapture
+      RepositoryName: go-capture
       RepositoryPolicyText: Json
