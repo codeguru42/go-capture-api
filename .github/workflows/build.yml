@@ -21,6 +21,7 @@ jobs:
         with:
           name: GithubRole
           template: cloud-formation/github-role.yml
+          parameter-overrides: "GitHubOrg=${{ github.repository_owner }},RepositoryName=${{ github.repository }}"
 
       - name: Deploy ECR repository
         uses: aws-actions/aws-cloudformation-github-deploy@v1
