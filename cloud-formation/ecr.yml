@@ -7,4 +7,3 @@ Resources:
       ImageScanningConfiguration:
         ScanOnPush: true
       RepositoryName: go-capture
-      RepositoryPolicyText: Json
