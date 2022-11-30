@@ -2,8 +2,8 @@ Resources:
   Repository:
     Type: AWS::ECR::Repository
     Properties:
+      RepositoryName: go-capture
       EncryptionConfiguration:
         EncryptionType: AES256
       ImageScanningConfiguration:
         ScanOnPush: true
-      RepositoryName: go-capture
