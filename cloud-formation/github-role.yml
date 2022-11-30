@@ -58,7 +58,7 @@ Resources:
                 "Effect": Allow,
                 "Action": cloudformation:CreateStack,
                 "Resource": "*"
-              }
+              },
             ]
           }
           PolicyName: CloudFormationPolicy
