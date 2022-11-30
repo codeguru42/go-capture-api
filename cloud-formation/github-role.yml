@@ -17,6 +17,7 @@ Resources:
   GithubRole:
     Type: AWS::IAM::Role
     Properties:
+      RoleName: GithubRole
       AssumeRolePolicyDocument:
         Statement:
           - Effect: Allow
@@ -99,7 +100,6 @@ Resources:
               },
             ]
           }
-      RoleName: GithubRole
 
   GithubOidc:
     Type: AWS::IAM::OIDCProvider
