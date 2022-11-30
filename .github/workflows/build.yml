@@ -19,7 +19,7 @@ jobs:
       - name: Deploy Github Role
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: GithubRole
+          name: GoCaptureGithubRole
           template: cloud-formation/github-role.yml
           parameter-overrides: "GithubOrg=${{ github.repository_owner }},RepositoryName=${{ github.repository }}"
           capabilities: CAPABILITY_NAMED_IAM
