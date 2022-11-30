@@ -43,6 +43,11 @@ Resources:
                 "Effect": Allow,
                 "Action": cloudformation:CreateChangeSet,
                 "Resource": "*"
+              },
+              {
+                "Effect": Allow,
+                "Action": cloudformation:DescribeChangeSet,
+                "Resource": "*"
               }
             ]
           }
