@@ -31,7 +31,8 @@ Resources:
                 token.actions.githubusercontent.com:sub: !Sub repo:${GithubOrg}/${RepositoryName}:*
       Path: /gocapture/
       Policies:
-        - PolicyDocument: {
+        - PolicyName: CloudFormationPolicy
+          PolicyDocument: {
             "Version": "2012-10-17",
             "Statement": [
               {
@@ -61,8 +62,8 @@ Resources:
               },
             ]
           }
-          PolicyName: CloudFormationPolicy
-        - PolicyDocument: {
+        - PolicyName: IamPolicy
+          PolicyDocument: {
             "Version": "2012-10-17",
             "Statement": [
               {
@@ -82,8 +83,8 @@ Resources:
               },
             ]
           }
-          PolicyName: IamPolicy
-        - PolicyDocument: {
+        - PolicyName: EcrPolicy
+          PolicyDocument: {
             "Version": "2012-10-17",
             "Statement": [
               {
@@ -98,7 +99,6 @@ Resources:
               },
             ]
           }
-          PolicyName: EcrPolicy
       RoleName: GithubRole
 
   GithubOidc:
