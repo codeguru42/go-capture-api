@@ -65,6 +65,11 @@ Resources:
                 "Action": iam:UpdateAssumeRolePolicy,
                 "Resource": "*"
               },
+              {
+                "Effect": Allow,
+                "Action": iam:GetRole,
+                "Resource": "*"
+              },
             ]
           }
           PolicyName: IamPolicy
