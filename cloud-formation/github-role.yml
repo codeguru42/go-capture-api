@@ -97,7 +97,37 @@ Resources:
               },
               {
                 "Effect": Allow,
+                "Action": ecr:BatchGetImage,
+                "Resource": "*"
+              },
+              {
+                "Effect": Allow,
+                "Action": ecr:BatchCheckLayerAvailability,
+                "Resource": "*"
+              },
+              {
+                "Effect": Allow,
+                "Action": ecr:CompleteLayerUpload,
+                "Resource": "*"
+              },
+              {
+                "Effect": Allow,
+                "Action": ecr:InitiateLayerUpload,
+                "Resource": "*"
+              },
+              {
+                "Effect": Allow,
+                "Action": ecr:GetDownloadUrlForLayer,
+                "Resource": "*"
+              },
+              {
+                "Effect": Allow,
                 "Action": ecr:PutImage,
+                "Resource": "*"
+              },
+              {
+                "Effect": Allow,
+                "Action": ecr:UploadLayerPart,
                 "Resource": "*"
               },
             ]
