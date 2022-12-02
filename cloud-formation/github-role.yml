@@ -1,7 +1,5 @@
 Parameters:
-  GithubOrg:
-    Type: String
-  RepositoryName:
+  Repository:
     Type: String
 
 Resources:
@@ -17,7 +15,7 @@ Resources:
               Federated: !Ref GithubOidc
             Condition:
               StringLike:
-                token.actions.githubusercontent.com:sub: !Sub repo:${GithubOrg}/${RepositoryName}:*
+                token.actions.githubusercontent.com:sub: !Sub repo:${Repository}:*
       Path: /gocapture/
       Policies:
         - PolicyName: CloudFormationPolicy
