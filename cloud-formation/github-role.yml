@@ -3,10 +3,6 @@ Parameters:
     Type: String
   RepositoryName:
     Type: String
-  OIDCProviderArn:
-    Description: Arn for the GitHub OIDC Provider.
-    Default: ""
-    Type: String
 
 Resources:
   GithubRole:
