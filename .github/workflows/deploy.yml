@@ -1,9 +1,7 @@
 name: Deploy
 on:
-  workflow_dispatch:
   workflow_run:
-    workflows:
-      - Build
+    workflows: [Build]
     types:
       - completed
 
@@ -11,7 +9,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Build
-        shell: bash
-        run: |
-          echo Deploying
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          role-to-assume: arn:aws:iam::200049542062:role/gocapture/GithubRole
+          aws-region: us-west-1
+
+      - name: Deploy ECS Cluster
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: GoCaptureECSCluster
+          template: cloud-formation/ecs.yml
+          no-fail-on-empty-changeset: 1
