@@ -1,0 +1,5 @@
+Resources:
+  Cluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: GoCaptureCluster
