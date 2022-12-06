@@ -17,8 +17,7 @@ def categorize(patch, label_black, label_white):
 
 
 def find_stones(board):
-    gray = cv2.cvtColor(board, cv2.COLOR_BGR2GRAY)
-    labeled_image, label_black, label_white = get_clusters(gray)
+    labeled_image, label_black, label_white = get_clusters(board)
     height, width, _ = board.shape
     dx = width // 18
     dy = height // 18
@@ -55,10 +54,11 @@ def draw_patches(image, coords, color):
         cv2.rectangle(image, (left, top), (right, bottom), color, 2)
 
 
-def get_clusters(image):
-    width, height = image.shape
-    pixels = np.float32(image.reshape((width*height)))
+def get_clusters(board):
+    gray = cv2.cvtColor(board, cv2.COLOR_BGR2GRAY)
+    width, height = gray.shape
+    pixels = np.float32(gray.reshape((width * height)))
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
     flags = cv2.KMEANS_RANDOM_CENTERS
     _, labels, palette = cv2.kmeans(pixels, 5, None, criteria, 10, flags)
-    return labels.reshape(image.shape), np.argmin(palette), np.argmax(palette)
+    return labels.reshape(gray.shape), np.argmin(palette), np.argmax(palette)
