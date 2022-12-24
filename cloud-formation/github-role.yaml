@@ -94,6 +94,7 @@ Resources:
                 "Effect": "Allow",
                 "Action": [
                   "ecs:CreateCluster",
+                  "ecs:DeregisterTaskDefinition",
                   "ecs:DescribeClusters",
                   "ecs:DescribeServices",
                   "ecs:RegisterTaskDefinition",
