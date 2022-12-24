@@ -23,7 +23,7 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
                   cloudformation:CreateChangeSet,
                   cloudformation:CreateStack,
@@ -33,7 +33,7 @@ Resources:
                   cloudformation:ExecuteChangeSet,
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
         - PolicyName: IamPolicy
@@ -41,7 +41,7 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
                   iam:CreateUser,
                   iam:DeleteUser,
@@ -55,7 +55,7 @@ Resources:
                   iam:UpdateAssumeRolePolicy,
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
         - PolicyName: EcrPolicy
@@ -63,7 +63,7 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
                   ecr:BatchCheckLayerAvailability,
                   ecr:BatchGetImage,
@@ -81,7 +81,7 @@ Resources:
                   ecr:UploadLayerPart
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
         - PolicyName: EcsPolicy
@@ -89,12 +89,12 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
-                  ecs:DescribeClusters
+                  "ecs:DescribeClusters"
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
 
