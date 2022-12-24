@@ -46,6 +46,7 @@ Resources:
                   "iam:CreateRole",
                   "iam:DeleteRole",
                   "iam:GetRole",
+                  "iam:PassRole",
                   "iam:PutRolePolicy",
                   "iam:PutRoleRole",
                   "iam:UpdateAssumeRolePolicy"
