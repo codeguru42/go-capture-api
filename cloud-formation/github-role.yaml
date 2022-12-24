@@ -95,6 +95,7 @@ Resources:
                 "Action": [
                   "ecs:CreateCluster",
                   "ecs:DescribeClusters",
+                  "ecs:DescribeServices",
                   "ecs:RegisterTaskDefinition",
                   "iam:PassRole"
                 ],
