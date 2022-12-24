@@ -79,7 +79,8 @@ Resources:
               {
                 "Effect": "Allow",
                 "Action": [
-                  "ecs:DescribeClusters"
+                  "ecs:DescribeClusters",
+                  "ecs:CreateCluster"
                 ],
                 "Resource": "*"
               }
