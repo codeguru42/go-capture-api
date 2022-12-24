@@ -3,6 +3,12 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: GoCaptureExecutionRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRole
+            Principle:
+              Service: ecs-tasks.amazonaws.com
       Path: /gocapture/
   TaskRole:
     Type: AWS::IAM::Role
