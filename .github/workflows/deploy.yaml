@@ -16,6 +16,8 @@ jobs:
     permissions:
       id-token: write
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
         with:
