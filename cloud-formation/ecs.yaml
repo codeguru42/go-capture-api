@@ -20,3 +20,17 @@ Resources:
       DesiredCount: 1
       LaunchType: FARGATE
       ServiceName: GoCaptureECSService
+      TaskDefinition: !Ref TaskDefinition
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - ContainerDefinition
+      Cpu: .25 vCPU
+      ExecutionRoleArn: !Ref ExecutionRole
+      Family: GoCapture
+      Memory: 0.5 GB
+      NetworkMode: awsvpc
+      RuntimePlatform:
+        RuntimePlatform
+      TaskRoleArn: !Ref TaskRole
