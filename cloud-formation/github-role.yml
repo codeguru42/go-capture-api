@@ -23,17 +23,17 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
-                  cloudformation:CreateChangeSet,
-                  cloudformation:CreateStack,
-                  cloudformation:DeleteChangeSet
-                  cloudformation:DescribeChangeSet,
-                  cloudformation:DescribeStacks,
-                  cloudformation:ExecuteChangeSet,
+                  "cloudformation:CreateChangeSet",
+                  "cloudformation:CreateStack",
+                  "cloudformation:DeleteChangeSet",
+                  "cloudformation:DescribeChangeSet",
+                  "cloudformation:DescribeStacks",
+                  "cloudformation:ExecuteChangeSet"
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
         - PolicyName: IamPolicy
@@ -41,14 +41,14 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
-                  iam:GetRole,
-                  iam:PutRoleRole,
-                  iam:UpdateAssumeRolePolicy,
+                  "iam:GetRole",
+                  "iam:PutRoleRole",
+                  "iam:UpdateAssumeRolePolicy"
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
         - PolicyName: EcrPolicy
@@ -56,20 +56,20 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
-                  ecr:BatchCheckLayerAvailability,
-                  ecr:BatchGetImage,
-                  ecr:CompleteLayerUpload,
-                  ecr:CreateRepository,
-                  ecr:GetAuthorizationToken,
-                  ecr:GetDownloadUrlForLayer,
-                  ecr:InitiateLayerUpload,
-                  ecr:PutImage,
-                  ecr:UploadLayerPart
+                  "ecr:BatchCheckLayerAvailability",
+                  "ecr:BatchGetImage",
+                  "ecr:CompleteLayerUpload",
+                  "ecr:CreateRepository",
+                  "ecr:GetAuthorizationToken",
+                  "ecr:GetDownloadUrlForLayer",
+                  "ecr:InitiateLayerUpload",
+                  "ecr:PutImage",
+                  "ecr:UploadLayerPart"
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
         - PolicyName: EcsPolicy
@@ -77,12 +77,12 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
-                  ecs:DescribeClusters
+                  "ecs:DescribeClusters"
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
 
