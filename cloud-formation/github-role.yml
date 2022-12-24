@@ -46,7 +46,6 @@ Resources:
                   "iam:CreateRole",
                   "iam:DeleteRole",
                   "iam:GetRole",
-                  "iam:PassRole",
                   "iam:PutRolePolicy",
                   "iam:PutRoleRole",
                   "iam:UpdateAssumeRolePolicy"
@@ -70,7 +69,7 @@ Resources:
                   "ecr:GetDownloadUrlForLayer",
                   "ecr:InitiateLayerUpload",
                   "ecr:PutImage",
-                  "ecr:UploadLayerPart"
+                  "ecr:UploadLayerPart",
                 ],
                 "Resource": "*"
               }
@@ -85,7 +84,8 @@ Resources:
                 "Action": [
                   "ecs:CreateCluster",
                   "ecs:DescribeClusters",
-                  "ecs:RegisterTaskDefinition"
+                  "ecs:RegisterTaskDefinition",
+                  "iam:PassRole"
                 ],
                 "Resource": "*"
               }
