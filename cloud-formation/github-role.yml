@@ -43,6 +43,7 @@ Resources:
               {
                 "Effect": "Allow",
                 "Action": [
+                  "iam:CreateRole",
                   "iam:GetRole",
                   "iam:PutRoleRole",
                   "iam:UpdateAssumeRolePolicy"
