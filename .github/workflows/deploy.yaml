@@ -28,5 +28,6 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: GoCaptureECSCluster
+          capabilities: CAPABILITY_NAMED_IAM
           template: cloud-formation/ecs.yaml
           no-fail-on-empty-changeset: 1
