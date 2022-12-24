@@ -43,6 +43,7 @@ Resources:
               {
                 "Effect": "Allow",
                 "Action": [
+                  iam:CreateRole,
                   iam:CreateUser,
                   iam:DeleteUser,
                   iam:DeleteUserPolicy,
