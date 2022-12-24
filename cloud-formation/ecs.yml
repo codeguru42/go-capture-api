@@ -7,7 +7,7 @@ Resources:
         Statement:
           - Effect: Allow
             Action: sts:AssumeRole
-            Principle:
+            Principal:
               Service: ecs-tasks.amazonaws.com
       Path: /gocapture/
   TaskRole:
@@ -18,7 +18,7 @@ Resources:
         Statement:
           - Effect: Allow
             Action: sts:AssumeRole
-            Principle:
+            Principal:
               Service: ecs-tasks.amazonaws.com
       Path: /gocapture/
   Cluster:
