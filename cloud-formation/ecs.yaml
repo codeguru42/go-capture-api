@@ -48,5 +48,6 @@ Resources:
       Memory: 0.5 GB
       NetworkMode: awsvpc
       RuntimePlatform:
-        RuntimePlatform
+        CpuArchitecture: X86_64
+        OperatingSystemFamily: LINUX
       TaskRoleArn: !Ref TaskRole
