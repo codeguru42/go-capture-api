@@ -45,6 +45,7 @@ Resources:
                 "Action": [
                   "iam:CreateRole",
                   "iam:GetRole",
+                  "iam:PutRolePolicy",
                   "iam:PutRoleRole",
                   "iam:UpdateAssumeRolePolicy"
                 ],
