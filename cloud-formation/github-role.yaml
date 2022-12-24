@@ -51,7 +51,6 @@ Resources:
                   iam:GetRole,
                   iam:GetUser,
                   iam:ListAccessKeys,
-                  iam:PassRole,
                   iam:PutRolePolicy,
                   iam:PutRoleRole,
                   iam:PutUserPolicy,
@@ -96,7 +95,8 @@ Resources:
                 "Action": [
                   "ecs:CreateCluster",
                   "ecs:DescribeClusters",
-                  "ecs:RegisterTaskDefinition"
+                  "ecs:RegisterTaskDefinition",
+                  "iam:PassRole"
                 ],
                 "Resource": "*"
               }

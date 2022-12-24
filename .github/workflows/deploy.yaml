@@ -24,11 +24,19 @@ jobs:
           role-to-assume: arn:aws:iam::200049542062:role/gocapture/GithubRole
           aws-region: us-west-1
 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
       - name: Deploy ECS Cluster
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: go-capture
+          IMAGE_TAG: ${{ github.sha }}
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: GoCaptureECSCluster
           capabilities: CAPABILITY_NAMED_IAM
-          parameter-overrides: "TaskImage=$REGISTRY/$REPOSITORY:$IMAGE_TAG"
+          parameter-overrides: "TaskImage=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}"
           template: cloud-formation/ecs.yaml
           no-fail-on-empty-changeset: 1
