@@ -45,6 +45,7 @@ Resources:
                 "Action": [
                   iam:CreateRole,
                   iam:CreateUser,
+                  iam:DeleteRole,
                   iam:DeleteUser,
                   iam:DeleteUserPolicy,
                   iam:GetRole,
