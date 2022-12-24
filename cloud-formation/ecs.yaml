@@ -3,3 +3,10 @@ Resources:
     Type: AWS::ECS::Cluster
     Properties:
       ClusterName: GoCaptureCluster
+  Service:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !Ref Cluster
+      DesiredCount: 1
+      LaunchType: FARGATE
+      ServiceName: GoCaptureECSService
