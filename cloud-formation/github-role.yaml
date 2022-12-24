@@ -51,6 +51,7 @@ Resources:
                   iam:GetRole,
                   iam:GetUser,
                   iam:ListAccessKeys,
+                  iam:PassRole,
                   iam:PutRolePolicy,
                   iam:PutRoleRole,
                   iam:PutUserPolicy,
