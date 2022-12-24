@@ -82,8 +82,8 @@ Resources:
               {
                 "Effect": "Allow",
                 "Action": [
-                  "ecs:DescribeClusters",
                   "ecs:CreateCluster",
+                  "ecs:DescribeClusters",
                   "ecs:RegisterTaskDefinition"
                 ],
                 "Resource": "*"
