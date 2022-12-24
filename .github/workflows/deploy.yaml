@@ -29,5 +29,6 @@ jobs:
         with:
           name: GoCaptureECSCluster
           capabilities: CAPABILITY_NAMED_IAM
+          parameter-overrides: "TaskImage=$REGISTRY/$REPOSITORY:$IMAGE_TAG"
           template: cloud-formation/ecs.yaml
           no-fail-on-empty-changeset: 1

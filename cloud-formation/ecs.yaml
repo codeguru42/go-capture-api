@@ -1,3 +1,6 @@
+Parameters:
+  TaskImage:
+    Type: String
 Resources:
   ExecutionRole:
     Type: AWS::IAM::Role
@@ -37,7 +40,8 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       ContainerDefinitions:
-        - ContainerDefinition
+        - Name: GoCaptureContainer
+          Image: !Ref TaskImage
       Cpu: .25 vCPU
       ExecutionRoleArn: !Ref ExecutionRole
       Family: GoCapture
