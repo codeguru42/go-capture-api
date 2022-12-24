@@ -24,32 +24,14 @@ Resources:
             "Statement": [
               {
                 "Effect": Allow,
-                "Action": cloudformation:DescribeStacks,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": cloudformation:CreateChangeSet,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": cloudformation:DescribeChangeSet,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": cloudformation:ExecuteChangeSet,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": cloudformation:CreateStack,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": cloudformation:DeleteChangeSet,
+                "Action": [
+                  cloudformation:CreateChangeSet,
+                  cloudformation:CreateStack,
+                  cloudformation:DeleteChangeSet,
+                  cloudformation:DescribeChangeSet,
+                  cloudformation:DescribeStacks,
+                  cloudformation:ExecuteChangeSet,
+                ],
                 "Resource": "*"
               },
             ]
@@ -60,22 +42,12 @@ Resources:
             "Statement": [
               {
                 "Effect": Allow,
-                "Action": iam:UpdateAssumeRolePolicy,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": iam:GetRole,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": iam:PutRoleRole,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": iam:PutRolePolicy,
+                "Action": [
+                  iam:GetRole,
+                  iam:PutRolePolicy,
+                  iam:PutRoleRole,
+                  iam:UpdateAssumeRolePolicy,
+                ],
                 "Resource": "*"
               },
             ]
@@ -86,47 +58,17 @@ Resources:
             "Statement": [
               {
                 "Effect": Allow,
-                "Action": ecr:CreateRepository,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": ecr:GetAuthorizationToken,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": ecr:BatchGetImage,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": ecr:BatchCheckLayerAvailability,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": ecr:CompleteLayerUpload,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": ecr:InitiateLayerUpload,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": ecr:GetDownloadUrlForLayer,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": ecr:PutImage,
-                "Resource": "*"
-              },
-              {
-                "Effect": Allow,
-                "Action": ecr:UploadLayerPart,
+                "Action": [
+                  ecr:BatchCheckLayerAvailability,
+                  ecr:BatchGetImage,
+                  ecr:CompleteLayerUpload,
+                  ecr:CreateRepository,
+                  ecr:GetAuthorizationToken,
+                  ecr:GetDownloadUrlForLayer,
+                  ecr:InitiateLayerUpload,
+                  ecr:PutImage,
+                  ecr:UploadLayerPart
+                ],
                 "Resource": "*"
               },
             ]
