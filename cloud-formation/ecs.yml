@@ -1,4 +1,14 @@
 Resources:
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: GoCaptureExecutionRole
+      Path: /gocapture/
+  TaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: GoCaptureTaskRole
+      Path: /gocapture/
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
