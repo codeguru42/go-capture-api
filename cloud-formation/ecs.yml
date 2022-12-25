@@ -32,6 +32,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupName: GoCaptureSecurityGroup
+      GroupDescription: Security Group for Go Capture ECS Service
       VpcId: !Ref Vpc
   PublicSubnet:
     Type: AWS::EC2::Subnet
