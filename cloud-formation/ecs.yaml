@@ -12,6 +12,8 @@ Resources:
             Action: sts:AssumeRole
             Principal:
               Service: ecs-tasks.amazonaws.com
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
       Path: /gocapture/
   TaskRole:
     Type: AWS::IAM::Role
