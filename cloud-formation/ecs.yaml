@@ -37,6 +37,7 @@ Resources:
   PublicSubnet:
     Type: AWS::EC2::Subnet
     Properties:
+      CidrBlock: 10.0.0.0/16
       VpcId: !Ref Vpc
   Cluster:
     Type: AWS::ECS::Cluster
