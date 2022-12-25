@@ -24,6 +24,19 @@ Resources:
             Principal:
               Service: ecs-tasks.amazonaws.com
       Path: /gocapture/
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: GoCaptureSecurityGroup
+      VpcId: !Ref Vpc
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Vpc
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
@@ -34,6 +47,13 @@ Resources:
       Cluster: !Ref Cluster
       DesiredCount: 1
       LaunchType: FARGATE
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - !Ref SecurityGroup
+          Subnets:
+            - !Ref PublicSubnet
       ServiceName: GoCaptureECSService
       TaskDefinition: !Ref TaskDefinition
   TaskDefinition:
