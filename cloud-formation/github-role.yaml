@@ -112,7 +112,8 @@ Resources:
               {
                 "Effect": "Allow",
                 "Action": [
-                  "ec2:CreateVpc"
+                  "ec2:CreateVpc",
+                  "ec2:DeleteVpc"
                 ],
                 "Resource": "*"
               }
