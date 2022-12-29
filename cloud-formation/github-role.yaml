@@ -112,8 +112,12 @@ Resources:
               {
                 "Effect": "Allow",
                 "Action": [
+                  "ec2:CreateSecurityGroup",
+                  "ec2:CreateSubnet",
+                  "ec2:CreateTags",
                   "ec2:CreateVpc",
-                  "ec2:DeleteVpc"
+                  "ec2:DeleteVpc",
+                  "ec2:ModifyVpcAttribute"
                 ],
                 "Resource": "*"
               }
