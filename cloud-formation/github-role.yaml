@@ -95,6 +95,7 @@ Resources:
                 "Action": [
                   "ecs:CreateCluster",
                   "ecs:CreateService",
+                  "ecs:DeleteCluster",
                   "ecs:DeregisterTaskDefinition",
                   "ecs:DescribeClusters",
                   "ecs:DescribeServices",
@@ -119,6 +120,7 @@ Resources:
                   "ec2:CreateTags",
                   "ec2:CreateVpc",
                   "ec2:DeleteVpc",
+                  "ec2:DescribeVpcs",
                   "ec2:ModifyVpcAttribute"
                 ],
                 "Resource": "*"
