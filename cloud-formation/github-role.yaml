@@ -99,6 +99,8 @@ Resources:
                   "ecs:DescribeClusters",
                   "ecs:DescribeServices",
                   "ecs:RegisterTaskDefinition",
+                  "iam:AttachRolePolicy",
+                  "iam:DetachRolePolicy",
                   "iam:PassRole"
                 ],
                 "Resource": "*"
