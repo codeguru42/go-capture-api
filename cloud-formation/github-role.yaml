@@ -123,6 +123,7 @@ Resources:
                   "ec2:DeleteSubnet",
                   "ec2:DeleteVpc",
                   "ec2:DescribeSecurityGroups",
+                  "ec2:DescribeSubnets",
                   "ec2:DescribeVpcs",
                   "ec2:ModifyVpcAttribute"
                 ],
