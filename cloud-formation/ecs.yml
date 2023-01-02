@@ -14,7 +14,6 @@ Resources:
               Service: ecs-tasks.amazonaws.com
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
-      Path: /gocapture/
   TaskRole:
     Type: AWS::IAM::Role
     Properties:
@@ -25,7 +24,6 @@ Resources:
             Action: sts:AssumeRole
             Principal:
               Service: ecs-tasks.amazonaws.com
-      Path: /gocapture/
   Vpc:
     Type: AWS::EC2::VPC
     Properties:
