@@ -126,6 +126,7 @@ Resources:
                   "ec2:DescribeSecurityGroups",
                   "ec2:DescribeSubnets",
                   "ec2:DescribeVpcs",
+                  "ec2:ModifySubnetAttribute",
                   "ec2:ModifyVpcAttribute"
                 ],
                 "Resource": "*"
