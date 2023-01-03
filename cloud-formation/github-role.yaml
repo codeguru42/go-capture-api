@@ -101,6 +101,7 @@ Resources:
                   "ecs:DescribeClusters",
                   "ecs:DescribeServices",
                   "ecs:RegisterTaskDefinition",
+                  "ecs:UpdateService",
                   "iam:AttachRolePolicy",
                   "iam:DetachRolePolicy",
                   "iam:PassRole"
