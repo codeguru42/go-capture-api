@@ -117,6 +117,7 @@ Resources:
               {
                 "Effect": "Allow",
                 "Action": [
+                  "ec2:AttachInternetGateway",
                   "ec2:CreateInternetGateway",
                   "ec2:CreateSecurityGroup",
                   "ec2:CreateSubnet",
