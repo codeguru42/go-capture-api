@@ -1,4 +1,4 @@
-POST http://localhost:8000/capture/
+POST http://{{host}}:{{port}}/capture/
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
