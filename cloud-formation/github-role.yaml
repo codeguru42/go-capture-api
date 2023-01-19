@@ -46,6 +46,7 @@ Resources:
                   iam:CreateRole,
                   iam:CreateUser,
                   iam:DeleteRole,
+                  iam:DeleteRolePolicy,
                   iam:DeleteUser,
                   iam:DeleteUserPolicy,
                   iam:GetRole,
