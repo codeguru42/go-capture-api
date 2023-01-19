@@ -44,6 +44,7 @@ Resources:
                 "Effect": Allow,
                 "Action": [
                   iam:CreateUser,
+                  iam:DeleteUser,
                   iam:GetRole,
                   iam:GetUser,
                   iam:ListAccessKeys,
