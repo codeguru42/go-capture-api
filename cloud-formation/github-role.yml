@@ -73,6 +73,11 @@ Resources:
                 "Action": iam:PutRoleRole,
                 "Resource": "*"
               },
+              {
+                "Effect": Allow,
+                "Action": iam:PutRolePolicy,
+                "Resource": "*"
+              },
             ]
           }
         - PolicyName: EcrPolicy
