@@ -4,8 +4,6 @@ Resources:
     Type: AWS::IAM::User
     Properties:
       UserName: BetaDeployUser
-      Policies:
-        - !Ref EcrDeployPolicy
   EcrDeployPolicy:
     Type: AWS::IAM::Policy
     Properties:
@@ -17,3 +15,5 @@ Resources:
             Action:
               - ecr:GetAuthorizationToken
             Resource: "*"
+      Users:
+        - !Ref BetaDeployUser
