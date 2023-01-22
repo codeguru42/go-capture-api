@@ -17,4 +17,4 @@ Resources:
           - Effect: Allow
             Action:
               - ecr:GetAuthorizationToken
-            Resource: *
+            Resource: "*"
