@@ -43,6 +43,7 @@ Resources:
               {
                 "Effect": Allow,
                 "Action": [
+                  iam:CreateUser,
                   iam:GetRole,
                   iam:GetUser,
                   iam:PutRolePolicy,
