@@ -44,6 +44,7 @@ Resources:
                 "Effect": Allow,
                 "Action": [
                   iam:GetRole,
+                  iam:GetUser,
                   iam:PutRolePolicy,
                   iam:PutRoleRole,
                   iam:UpdateAssumeRolePolicy,
