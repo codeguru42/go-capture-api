@@ -21,6 +21,7 @@ Resources:
               - ecr:BatchGetImage
               - ecr:DescribeImages
               - ecr:DescribeRepositories
+              - ecr:GetDownloadUrlForLayer
               - ecr:ListImages
             Resource: !ImportValue GoCaptureECR-RepositoryArn
       Users:
