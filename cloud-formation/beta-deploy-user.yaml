@@ -18,6 +18,7 @@ Resources:
             Resource: "*"
           - Effect: Allow
             Action:
+              - ecr:BatchGetImage
               - ecr:DescribeImages
               - ecr:DescribeRepositories
               - ecr:ListImages
