@@ -20,6 +20,7 @@ Resources:
             Action:
               - ecr:DescribeImages
               - ecr:DescribeRepositories
+              - ecr:ListImages
             Resource: !ImportValue GoCaptureECR-RepositoryArn
       Users:
         - !Ref BetaDeployUser
