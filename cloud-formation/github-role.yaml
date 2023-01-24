@@ -69,6 +69,7 @@ Resources:
                   ecr:BatchGetImage,
                   ecr:CompleteLayerUpload,
                   ecr:CreateRepository,
+                  ecr:DescribeRepositories,
                   ecr:GetAuthorizationToken,
                   ecr:GetDownloadUrlForLayer,
                   ecr:InitiateLayerUpload,
