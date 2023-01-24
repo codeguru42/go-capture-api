@@ -14,9 +14,12 @@ Resources:
         Statement:
           - Effect: Allow
             Action:
+              - ecr:GetAuthorizationToken
+            Resource: "*"
+          - Effect: Allow
+            Action:
               - ecr:DescribeImages
               - ecr:DescribeRepositories
-              - ecr:GetAuthorizationToken
             Resource: !ImportValue GoCaptureECR-RepositoryArn
       Users:
         - !Ref BetaDeployUser
