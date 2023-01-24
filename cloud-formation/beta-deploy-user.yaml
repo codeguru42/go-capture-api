@@ -3,7 +3,7 @@ Resources:
   BetaDeployUser:
     Type: AWS::IAM::User
     Properties:
-      UserName: BetaDeployUser
+      UserName: go_capture_deploy
   EcrDeployPolicy:
     Type: AWS::IAM::Policy
     Properties:
