@@ -16,8 +16,6 @@ Resources:
             Action:
               - ecr:DescribeRepositories
               - ecr:GetAuthorizationToken
-            Resource: !Sub
-              - '${Repository}/*'
-              - Repository: !ImportValue GoCaptureECR-RepositoryArn
+            Resource: !ImportValue GoCaptureECR-RepositoryArn
       Users:
         - !Ref BetaDeployUser
