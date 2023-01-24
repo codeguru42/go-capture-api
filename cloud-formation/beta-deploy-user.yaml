@@ -15,6 +15,8 @@ Resources:
           - Effect: Allow
             Action:
               - ecr:GetAuthorizationToken
-            Resource: "*"
+            Resource: !Sub
+              - '${Repository}/*'
+              - Repository: !ImportValue GoCaptureECR-Repository
       Users:
         - !Ref BetaDeployUser
