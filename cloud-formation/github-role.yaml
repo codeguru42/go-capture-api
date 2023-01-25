@@ -43,9 +43,15 @@ Resources:
               {
                 "Effect": Allow,
                 "Action": [
+                  iam:CreateUser,
+                  iam:DeleteUser,
+                  iam:DeleteUserPolicy,
                   iam:GetRole,
+                  iam:GetUser,
+                  iam:ListAccessKeys,
                   iam:PutRolePolicy,
                   iam:PutRoleRole,
+                  iam:PutUserPolicy,
                   iam:UpdateAssumeRolePolicy,
                 ],
                 "Resource": "*"
@@ -63,6 +69,7 @@ Resources:
                   ecr:BatchGetImage,
                   ecr:CompleteLayerUpload,
                   ecr:CreateRepository,
+                  ecr:DescribeRepositories,
                   ecr:GetAuthorizationToken,
                   ecr:GetDownloadUrlForLayer,
                   ecr:InitiateLayerUpload,

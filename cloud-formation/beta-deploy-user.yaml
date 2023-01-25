@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  EcrStackName:
+    Type: String
+Resources:
+  BetaDeployUser:
+    Type: AWS::IAM::User
+    Properties:
+      Path: /go_capture/
+      UserName: beta_deploy
+  EcrDeployPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: EcrDeployPolicy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - ecr:GetAuthorizationToken
+            Resource: "*"
+          - Effect: Allow
+            Action:
+              - ecr:BatchGetImage
+              - ecr:DescribeImages
+              - ecr:DescribeRepositories
+              - ecr:GetDownloadUrlForLayer
+              - ecr:ListImages
+            Resource:
+              Fn::ImportValue:
+                Fn::Sub: ${EcrStackName}-RepositoryArn
+      Users:
+        - !Ref BetaDeployUser

@@ -7,3 +7,9 @@ Resources:
         EncryptionType: AES256
       ImageScanningConfiguration:
         ScanOnPush: true
+
+Outputs:
+  GoCaptureRepository:
+    Value: !GetAtt Repository.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-RepositoryArn'
