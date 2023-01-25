@@ -1,4 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  EcrStackName:
+    Type: String
 Resources:
   BetaDeployUser:
     Type: AWS::IAM::User
@@ -23,6 +26,8 @@ Resources:
               - ecr:DescribeRepositories
               - ecr:GetDownloadUrlForLayer
               - ecr:ListImages
-            Resource: !ImportValue GoCaptureECR-RepositoryArn
+            Resource:
+              Fn::ImportValue:
+                Fn::Sub: ${EcrStackName}-RepositoryArn
       Users:
         - !Ref BetaDeployUser

@@ -36,12 +36,12 @@ jobs:
           template: cloud-formation/ecr.yaml
           no-fail-on-empty-changeset: 1
 
-
       - name: Beta Deploy User
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: GoCaptureBetaDeployUser
           template: cloud-formation/beta-deploy-user.yaml
+          parameter-overrides: EcrStackName=${{ steps.ecr-stack-name.outputs.ECR_STACK_NAME }}
           capabilities: CAPABILITY_NAMED_IAM
           no-fail-on-empty-changeset: 1
 
