@@ -2,8 +2,8 @@ import io
 
 import cv2
 import numpy as np
-from django.http import FileResponse
-from django.views.decorators.http import require_POST
+from django.http import FileResponse, JsonResponse
+from django.views.decorators.http import require_POST, require_GET
 
 from go_capture.sgf import perspective, find_stones
 from go_capture.sgf.make_sgf import make_sgf
@@ -20,3 +20,11 @@ def capture(request):
     make_sgf(file, black, white)
     file.seek(0)
     return FileResponse(file.read(), status=201, as_attachment=True, content_type='application/x-go-sgf')
+
+
+@require_GET
+def health_check(request):
+    body = {
+        'message': 'Healthy!'
+    }
+    return JsonResponse(body)
