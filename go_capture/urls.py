@@ -21,4 +21,5 @@ from go_capture import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('capture/', views.capture),
+    path('health_check/', views.health_check),
 ]
