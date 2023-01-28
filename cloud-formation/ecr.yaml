@@ -8,20 +8,21 @@ Resources:
       ImageScanningConfiguration:
         ScanOnPush: true
       LifecyclePolicy:
-        LifecyclePolicyText: '{
-          "rules": [
-            {
-              "rulePriority": 1,
-              "description": "Keep newest",
-              "selection": {
-                "tagStatus": "any",
-                "countType": "imageCountMoreThan",
-                "countNumber": 5
-              },
-              "action": "expire"
-            }
-          ]
-        }'
+        LifecyclePolicyText: |
+          {
+            "rules": [
+              {
+                "rulePriority": 1,
+                "description": "Keep newest",
+                "selection": {
+                  "tagStatus": "any",
+                  "countType": "imageCountMoreThan",
+                  "countNumber": 5
+                },
+                "action": "expire"
+              }
+            ]
+          }
 Outputs:
   GoCaptureRepository:
     Value: !GetAtt Repository.Arn
