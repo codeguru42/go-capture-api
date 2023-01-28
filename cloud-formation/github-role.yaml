@@ -72,6 +72,7 @@ Resources:
                   ecr:DescribeRepositories,
                   ecr:GetAuthorizationToken,
                   ecr:GetDownloadUrlForLayer,
+                  ecr:GetRepositoryPolicy,
                   ecr:InitiateLayerUpload,
                   ecr:PutImage,
                   ecr:UploadLayerPart
