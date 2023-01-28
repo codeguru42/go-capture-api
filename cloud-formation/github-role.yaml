@@ -74,6 +74,7 @@ Resources:
                   ecr:GetDownloadUrlForLayer,
                   ecr:GetRepositoryPolicy,
                   ecr:InitiateLayerUpload,
+                  ecr:ListTagsForResource,
                   ecr:PutImage,
                   ecr:PutImageScanningConfiguration,
                   ecr:PutLifecyclePolicy,
