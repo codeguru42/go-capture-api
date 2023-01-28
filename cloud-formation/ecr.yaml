@@ -25,6 +25,7 @@ Resources:
               }
             ]
           }
+
 Outputs:
   GoCaptureRepository:
     Value: !GetAtt Repository.Arn
