@@ -61,8 +61,4 @@ def get_clusters(image):
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
     flags = cv2.KMEANS_RANDOM_CENTERS
     _, labels, palette = cv2.kmeans(pixels, 5, None, criteria, 10, flags)
-    centers = np.uint8(palette)
-    labeled_image = centers[labels.flatten()]
-    clustered_image = labeled_image.reshape(image.shape)
-    cv2.imwrite('clusters.png', clustered_image)
     return labels.reshape(image.shape), np.argmin(palette), np.argmax(palette)
