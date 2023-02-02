@@ -2,7 +2,6 @@
 GET http://{{host}}:{{port}}/health_check/
 
 ### POST image
-
 POST http://{{host}}:{{port}}/capture/
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 

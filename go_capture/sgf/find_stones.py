@@ -18,7 +18,6 @@ def categorize(patch, label_black, label_white):
 
 def find_stones(board):
     gray = cv2.cvtColor(board, cv2.COLOR_BGR2GRAY)
-    cv2.imwrite('gray.png', gray)
     labeled_image, label_black, label_white = get_clusters(gray)
     height, width, _ = board.shape
     dx = width // 18
