@@ -1,4 +1,5 @@
 import io
+from pathlib import Path
 
 import cv2
 import numpy as np
@@ -19,9 +20,11 @@ def capture(request):
     file = io.StringIO()
     make_sgf(file, black, white)
     file.seek(0)
+    filename = Path(image_file.name).stem
     return FileResponse(
         file.read(),
         status=201,
+        filename=f'${filename}.sgf',
         as_attachment=True,
         content_type='application/x-go-sgf'
     )
