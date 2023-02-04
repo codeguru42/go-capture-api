@@ -19,7 +19,12 @@ def capture(request):
     file = io.StringIO()
     make_sgf(file, black, white)
     file.seek(0)
-    return FileResponse(file.read(), status=201, as_attachment=True, content_type='application/x-go-sgf')
+    return FileResponse(
+        file.read(),
+        status=201,
+        as_attachment=True,
+        content_type='application/x-go-sgf'
+    )
 
 
 @require_GET
