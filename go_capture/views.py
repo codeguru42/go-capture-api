@@ -17,12 +17,12 @@ def capture(request):
     image = cv2.imdecode(image_data, cv2.IMREAD_COLOR)
     board = perspective.get_grid(image)
     black, white = find_stones.find_stones(board)
-    file = io.StringIO()
-    make_sgf(file, black, white)
-    file.seek(0)
+    output_file = io.StringIO()
+    make_sgf(output_file, black, white)
+    output_file.seek(0)
     filename = Path(image_file.name).stem
     return FileResponse(
-        file.read(),
+        output_file.read(),
         status=201,
         filename=f'${filename}.sgf',
         as_attachment=True,
