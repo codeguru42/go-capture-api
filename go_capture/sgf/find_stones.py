@@ -55,10 +55,10 @@ def draw_patches(image, coords, color):
 
 
 def get_clusters(board):
-    gray = cv2.cvtColor(board, cv2.COLOR_BGR2GRAY)
-    width, height = gray.shape
-    pixels = np.float32(gray.reshape((width * height)))
+    pixels = np.float32(board.reshape(-1, 3))
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
     flags = cv2.KMEANS_RANDOM_CENTERS
     _, labels, palette = cv2.kmeans(pixels, 5, None, criteria, 10, flags)
-    return labels.reshape(gray.shape), np.argmin(palette), np.argmax(palette)
+    width, height, _ = board.shape
+    means = np.mean(palette, axis=1)
+    return labels.reshape(width, height), np.argmin(means), np.argmax(means)
