@@ -72,6 +72,8 @@ Resources:
       ContainerDefinitions:
         - Name: GoCaptureContainer
           Image: !Ref TaskImage
+          LogConfiguration:
+            LogDriver: awslogs
       Cpu: .25 vCPU
       ExecutionRoleArn: !Ref ExecutionRole
       Family: GoCapture
