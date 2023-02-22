@@ -105,7 +105,8 @@ Resources:
                   ecs:UpdateService,
                   iam:AttachRolePolicy,
                   iam:DetachRolePolicy,
-                  iam:PassRole
+                  iam:PassRole,
+                  logs:CreateLogGroup
                 ],
                 "Resource": "*"
               }
