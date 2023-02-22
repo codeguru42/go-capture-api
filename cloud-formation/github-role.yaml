@@ -120,6 +120,7 @@ Resources:
                 "Action": [
                   "ec2:AttachInternetGateway",
                   "ec2:CreateInternetGateway",
+                  "ec2:CreateRouteTable",
                   "ec2:CreateSecurityGroup",
                   "ec2:CreateSubnet",
                   "ec2:CreateTags",
@@ -132,6 +133,7 @@ Resources:
                   "ec2:DescribeSecurityGroups",
                   "ec2:DescribeSubnets",
                   "ec2:DescribeVpcs",
+                  "ec2:DetachInternetGateway",
                   "ec2:ModifySubnetAttribute",
                   "ec2:ModifyVpcAttribute"
                 ],
