@@ -106,7 +106,8 @@ Resources:
                   iam:AttachRolePolicy,
                   iam:DetachRolePolicy,
                   iam:PassRole,
-                  logs:CreateLogGroup
+                  logs:CreateLogGroup,
+                  logs:DeleteLogGroup
                 ],
                 "Resource": "*"
               }
