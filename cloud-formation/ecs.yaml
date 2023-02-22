@@ -74,6 +74,9 @@ Resources:
           Image: !Ref TaskImage
           LogConfiguration:
             LogDriver: awslogs
+            Options:
+              awslogs-region: us-west-1
+              awslogs-group: !Ref LogGroup
       Cpu: .25 vCPU
       ExecutionRoleArn: !Ref ExecutionRole
       Family: GoCapture
@@ -104,3 +107,7 @@ Resources:
     Properties:
       RouteTableId: !Ref PublicRouteTable
       SubnetId: !Ref PublicSubnet
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: GoCaptureLogs
