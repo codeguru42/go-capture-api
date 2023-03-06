@@ -5,3 +5,5 @@ services:
       - .env
     ports:
       - 8000:8000
+  broker:
+    image: rabbitmq
