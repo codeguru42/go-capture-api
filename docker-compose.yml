@@ -1,5 +1,5 @@
 services:
   api:
-    build: .
+    image: ${account_id}.dkr.ecr.us-west-1.amazonaws.com/go-capture:${image_hash}
     ports:
       - 8000:8000
