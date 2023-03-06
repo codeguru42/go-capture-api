@@ -1,24 +1,17 @@
 import io
 from pathlib import Path
 
-import cv2
-import numpy as np
 from django.http import FileResponse, JsonResponse
 from django.views.decorators.http import require_POST, require_GET
 
-from go_capture.sgf import perspective, find_stones
-from go_capture.sgf.make_sgf import make_sgf
+from go_capture.sgf.process_image import process_image
 
 
 @require_POST
 def capture(request):
     image_file = request.FILES['image']
-    image_data = np.asarray(bytearray(image_file.read()), dtype="uint8")
-    image = cv2.imdecode(image_data, cv2.IMREAD_COLOR)
-    board = perspective.get_grid(image)
-    black, white = find_stones.find_stones(board)
     output_file = io.StringIO()
-    make_sgf(output_file, black, white)
+    process_image(image_file, output_file)
     output_file.seek(0)
     filename = Path(image_file.name).stem
     return FileResponse(
