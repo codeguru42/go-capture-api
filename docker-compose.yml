@@ -5,7 +5,14 @@ services:
       - .env
     ports:
       - 8000:8000
+  worker:
+    image: ${account_id}.dkr.ecr.us-west-1.amazonaws.com/go-capture:${image_hash}
+    command: "poetry run celery -A go_capture.tasks worker"
+    depends_on:
+      - broker
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
+    env_file:
+      - .env
   broker:
     image: rabbitmq
-    ports:
-      - 5672:5672
