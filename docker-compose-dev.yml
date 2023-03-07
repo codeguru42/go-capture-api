@@ -1,0 +1,14 @@
+services:
+  api:
+    build: .
+    command: "poetry run python3 /api/manage.py runserver"
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/api
+  broker:
+    image: rabbitmq
+    ports:
+      - 5672:5672
