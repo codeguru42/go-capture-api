@@ -15,6 +15,7 @@ services:
       - broker
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
+      - CELERY_RESULT_BACKEND=rpc
     env_file:
       - .env
     volumes:
