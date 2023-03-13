@@ -1,7 +1,7 @@
 services:
   api:
     build: .
-    command: "poetry run python3 /api/manage.py runserver"
+    command: "poetry run python3 /api/manage.py runserver 0.0.0.0:8000"
     env_file:
       - .env
     ports:
