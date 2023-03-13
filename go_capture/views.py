@@ -1,11 +1,10 @@
-import io
 from pathlib import Path
 
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST, require_GET
 
-from go_capture.sgf.process_image import process_image
+from go_capture.tasks import process_image_task
 
 
 @require_POST
@@ -15,6 +14,7 @@ def capture(request):
     output_path = settings.IMAGES_DIR / filename
     with output_path.open('wb') as output_file:
         output_file.write(image_file.read())
+    process_image_task.delay(str(output_path.absolute()))
     return HttpResponse(status=201)
 
 

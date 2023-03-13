@@ -20,3 +20,8 @@ app.autodiscover_tasks()
 @app.task(bind=True)
 def debug_task(self):
     print(f'Request: {self.request!r}')
+
+
+@app.task
+def process_image_task(image_filename):
+    print(image_filename)
