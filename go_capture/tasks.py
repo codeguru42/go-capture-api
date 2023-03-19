@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 from celery import Celery
+from django.conf import settings
 
 from go_capture.sgf.process_image import process_image
 
@@ -28,6 +29,7 @@ def debug_task(self):
 @app.task
 def process_image_task(image_filename):
     sgf_filename = f'{Path(image_filename).stem}.sgf'
+    sgf_path = settings.SGF_DIR / sgf_filename
     with open(image_filename, 'rb') as image_file:
-        with open(sgf_filename, 'w') as sgf_file:
+        with open(sgf_path, 'w') as sgf_file:
             process_image(image_file, sgf_file)
