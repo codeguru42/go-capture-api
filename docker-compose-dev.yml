@@ -4,6 +4,8 @@ services:
     command: "poetry run python3 /api/manage.py runserver 0.0.0.0:8000"
     env_file:
       - .env
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
     ports:
       - 8000:8000
     volumes:
