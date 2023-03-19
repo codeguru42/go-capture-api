@@ -1,6 +1,9 @@
 import os
+from pathlib import Path
 
 from celery import Celery
+
+from go_capture.sgf.process_image import process_image
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'go_capture.settings')
@@ -24,4 +27,7 @@ def debug_task(self):
 
 @app.task
 def process_image_task(image_filename):
-    print(image_filename)
+    sgf_filename = f'{Path(image_filename).stem}.sgf'
+    with open(image_filename, 'rb') as image_file:
+        with open(sgf_filename, 'w') as sgf_file:
+            process_image(image_file, sgf_file)
