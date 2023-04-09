@@ -28,11 +28,13 @@ def capture(request):
 @require_POST
 def capture_async(request):
     image_file = request.FILES['image']
+    fcm_token = request.POST['fcm_registration_token']
+    print(f'token: {fcm_token}')
     filename = Path(image_file.name)
     output_path = settings.IMAGES_DIR / filename
     with output_path.open('wb') as output_file:
         output_file.write(image_file.read())
-    process_image_task.delay(str(output_path.absolute()))
+    process_image_task.delay(str(output_path.absolute()), fcm_token)
     return HttpResponse(status=201)
 
 

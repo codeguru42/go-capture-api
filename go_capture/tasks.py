@@ -27,7 +27,8 @@ def debug_task(self):
 
 
 @app.task
-def process_image_task(image_filename):
+def process_image_task(image_filename, fcm_token):
+    print(f'token: {fcm_token}')
     sgf_filename = f'{Path(image_filename).stem}.sgf'
     sgf_path = settings.SGF_DIR / sgf_filename
     with open(image_filename, 'rb') as image_file:
