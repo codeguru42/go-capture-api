@@ -1,24 +1,19 @@
 import io
 from pathlib import Path
 
-import cv2
-import numpy as np
-from django.http import FileResponse, JsonResponse
+from django.conf import settings
+from django.http import JsonResponse, HttpResponse, FileResponse
 from django.views.decorators.http import require_POST, require_GET
 
-from go_capture.sgf import perspective, find_stones
-from go_capture.sgf.make_sgf import make_sgf
+from go_capture.sgf.process_image import process_image
+from go_capture.tasks import process_image_task
 
 
 @require_POST
 def capture(request):
     image_file = request.FILES['image']
-    image_data = np.asarray(bytearray(image_file.read()), dtype="uint8")
-    image = cv2.imdecode(image_data, cv2.IMREAD_COLOR)
-    board = perspective.get_grid(image)
-    black, white = find_stones.find_stones(board)
     output_file = io.StringIO()
-    make_sgf(output_file, black, white)
+    process_image(image_file, output_file)
     output_file.seek(0)
     filename = Path(image_file.name).stem
     return FileResponse(
@@ -28,6 +23,17 @@ def capture(request):
         as_attachment=True,
         content_type='application/x-go-sgf'
     )
+
+
+@require_POST
+def capture_async(request):
+    image_file = request.FILES['image']
+    filename = Path(image_file.name)
+    output_path = settings.IMAGES_DIR / filename
+    with output_path.open('wb') as output_file:
+        output_file.write(image_file.read())
+    process_image_task.delay(str(output_path.absolute()))
+    return HttpResponse(status=201)
 
 
 @require_GET

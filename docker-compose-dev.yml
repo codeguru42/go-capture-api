@@ -1,0 +1,29 @@
+services:
+  api:
+    build: .
+    command: "poetry run python3 /api/manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - .env
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/api
+  worker:
+    build: .
+    command: "poetry run celery -A go_capture.tasks worker"
+    depends_on:
+      - broker
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
+      - CELERY_RESULT_BACKEND=rpc
+    env_file:
+      - .env
+    volumes:
+      - .:/api
+  broker:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
