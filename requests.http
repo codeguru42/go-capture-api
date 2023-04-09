@@ -12,7 +12,7 @@ Content-Type: image/jpeg
 < ./images/whole_board/20220305_144247.jpg
 --WebAppBoundary--
 
-### POST image
+### POST image with worker queue
 POST {{protocol}}{{host}}:{{port}}/capture_async/
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
