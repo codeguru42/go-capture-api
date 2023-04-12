@@ -23,7 +23,7 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
                   cloudformation:CreateChangeSet,
                   cloudformation:CreateStack,
@@ -33,7 +33,7 @@ Resources:
                   cloudformation:ExecuteChangeSet,
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
         - PolicyName: IamPolicy
@@ -41,9 +41,12 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
+                  iam:CreateRole,
                   iam:CreateUser,
+                  iam:DeleteRole,
+                  iam:DeleteRolePolicy,
                   iam:DeleteUser,
                   iam:DeleteUserPolicy,
                   iam:GetRole,
@@ -55,7 +58,7 @@ Resources:
                   iam:UpdateAssumeRolePolicy,
                 ],
                 "Resource": "*"
-              },
+              }
             ]
           }
         - PolicyName: EcrPolicy
@@ -63,7 +66,7 @@ Resources:
             "Version": "2012-10-17",
             "Statement": [
               {
-                "Effect": Allow,
+                "Effect": "Allow",
                 "Action": [
                   ecr:BatchCheckLayerAvailability,
                   ecr:BatchGetImage,
@@ -81,7 +84,68 @@ Resources:
                   ecr:UploadLayerPart
                 ],
                 "Resource": "*"
-              },
+              }
+            ]
+          }
+        - PolicyName: EcsPolicy
+          PolicyDocument: {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  ecs:CreateCluster,
+                  ecs:CreateService,
+                  ecs:DeleteCluster,
+                  ecs:DeleteService,
+                  ecs:DeregisterTaskDefinition,
+                  ecs:DescribeClusters,
+                  ecs:DescribeServices,
+                  ecs:RegisterTaskDefinition,
+                  ecs:UpdateService,
+                  iam:AttachRolePolicy,
+                  iam:DetachRolePolicy,
+                  iam:PassRole,
+                  logs:CreateLogGroup,
+                  logs:DeleteLogGroup
+                ],
+                "Resource": "*"
+              }
+            ]
+          }
+        - PolicyName: Ec2Policy
+          PolicyDocument: {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  ec2:AssociateRouteTable,
+                  ec2:AttachInternetGateway,
+                  ec2:CreateInternetGateway,
+                  ec2:CreateRoute,
+                  ec2:CreateRouteTable,
+                  ec2:CreateSecurityGroup,
+                  ec2:CreateSubnet,
+                  ec2:CreateTags,
+                  ec2:CreateVpc,
+                  ec2:DeleteInternetGateway,
+                  ec2:DeleteRouteTable,
+                  ec2:DeleteSecurityGroup,
+                  ec2:DeleteSubnet,
+                  ec2:DeleteVpc,
+                  ec2:DescribeInternetGateways,
+                  ec2:DescribeRouteTables,
+                  ec2:DescribeSecurityGroups,
+                  ec2:DescribeSubnets,
+                  ec2:DescribeVpcs,
+                  ec2:DetachInternetGateway,
+                  ec2:DisassociateRouteTable,
+                  ec2:ModifySubnetAttribute,
+                  ec2:ModifyVpcAttribute
+                ],
+                "Resource": "*"
+              }
             ]
           }
 
