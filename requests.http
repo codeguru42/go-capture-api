@@ -17,6 +17,12 @@ POST {{protocol}}{{host}}:{{port}}/capture_async/
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
+Content-Disposition: form-data; name="fcm_registration_token"
+Content-Type: text/plain
+
+foobar
+
+--WebAppBoundary
 Content-Disposition: form-data; name="image"; filename="board.jpg"
 Content-Type: image/jpeg
 

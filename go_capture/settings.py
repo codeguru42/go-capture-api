@@ -129,3 +129,5 @@ IMAGES_DIR.mkdir(exist_ok=True)
 
 SGF_DIR = BASE_DIR / 'sgf'
 SGF_DIR.mkdir(exist_ok=True)
+
+FIREBASE_CREDENTIALS_FILE = BASE_DIR / env.str('FIREBASE_CREDENTIALS_FILE')

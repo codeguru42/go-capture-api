@@ -5,3 +5,4 @@
 *.jpg
 
 /http-client.private.env.json
+*-firebase-adminsdk-*.json

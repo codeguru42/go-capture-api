@@ -1,8 +1,10 @@
 import os
 from pathlib import Path
 
+import firebase_admin
 from celery import Celery
 from django.conf import settings
+from firebase_admin import credentials, messaging
 
 from go_capture.sgf.process_image import process_image
 
@@ -20,6 +22,9 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()
 
+cred = credentials.Certificate(settings.FIREBASE_CREDENTIALS_FILE)
+firebase_admin.initialize_app(cred)
+
 
 @app.task(bind=True)
 def debug_task(self):
@@ -27,9 +32,25 @@ def debug_task(self):
 
 
 @app.task
-def process_image_task(image_filename):
+def process_image_task(image_filename, fcm_token):
+    print(f'token: {fcm_token}')
     sgf_filename = f'{Path(image_filename).stem}.sgf'
     sgf_path = settings.SGF_DIR / sgf_filename
+    print(f'Processing {image_filename}')
     with open(image_filename, 'rb') as image_file:
         with open(sgf_path, 'w') as sgf_file:
             process_image(image_file, sgf_file)
+
+    # See documentation on defining a message payload.
+    message = messaging.Message(
+        data={
+            'sgf_file': str(sgf_path),
+        },
+        token=fcm_token,
+    )
+
+    # Send a message to the device corresponding to the provided
+    # registration token.
+    response = messaging.send(message)
+    # Response is a message ID string.
+    print('Successfully sent message:', response)
