@@ -1,9 +1,11 @@
+import io
 import os
 from pathlib import Path
 
 import firebase_admin
 from celery import Celery
 from django.conf import settings
+from django.core.files import File
 from firebase_admin import credentials, messaging
 
 from go_capture.sgf.process_image import process_image
@@ -34,17 +36,17 @@ def debug_task(self):
 @app.task
 def process_image_task(image_filename, fcm_token):
     print(f'token: {fcm_token}')
-    sgf_filename = f'{Path(image_filename).stem}.sgf'
-    sgf_path = settings.SGF_DIR / sgf_filename
     print(f'Processing {image_filename}')
     with open(image_filename, 'rb') as image_file:
-        with open(sgf_path, 'w') as sgf_file:
-            process_image(image_file, sgf_file)
+        sgf_buffer = io.StringIO()
+        process_image(image_file, sgf_buffer)
 
-    # See documentation on defining a message payload.
+    sgf_buffer.seek(0)
+    sgf_data = sgf_buffer.read()
+    print(sgf_data)
     message = messaging.Message(
         data={
-            'sgf_file': str(sgf_path),
+            'sgf': sgf_data,
         },
         token=fcm_token,
     )
