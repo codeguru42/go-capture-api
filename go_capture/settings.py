@@ -124,10 +124,14 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-IMAGES_DIR = BASE_DIR / 'images'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT.mkdir(exist_ok=True)
+
+IMAGES_DIR = MEDIA_ROOT / 'images'
 IMAGES_DIR.mkdir(exist_ok=True)
 
-SGF_DIR = BASE_DIR / 'sgf'
+SGF_DIR = MEDIA_ROOT / 'sgf'
 SGF_DIR.mkdir(exist_ok=True)
 
 FIREBASE_CREDENTIALS_FILE = BASE_DIR / env.str('FIREBASE_CREDENTIALS_FILE')
