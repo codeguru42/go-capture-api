@@ -1,11 +1,9 @@
 import io
 import os
-from pathlib import Path
 
 import firebase_admin
 from celery import Celery
 from django.conf import settings
-from django.core.files import File
 from firebase_admin import credentials, messaging
 
 from go_capture.sgf.process_image import process_image
