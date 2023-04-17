@@ -31,6 +31,7 @@ def capture_async(request):
     fcm_token = request.POST['fcm_registration_token']
     print(f'token: {fcm_token}')
     filename = Path(image_file.name)
+    print(filename)
     output_path = settings.IMAGES_DIR / filename
     with output_path.open('wb') as output_file:
         output_file.write(image_file.read())
