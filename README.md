@@ -10,6 +10,12 @@ Go Capture API is a REST API that will generate an SGF file from an image of a G
 * Python 3.11+
 * Docker and Docker Compose
 
+## Commit hooks
+
+```shell
+pre-commit install
+```
+
 ## Run
 
 ```shell
