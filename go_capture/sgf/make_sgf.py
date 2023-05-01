@@ -4,10 +4,10 @@ def write_stones(file, stones):
 
 
 def make_sgf(file, black, white):
-    file.write('(;FF[4]\n')
-    file.write('GM[1]\n')
-    file.write(';AB')
+    file.write("(;FF[4]\n")
+    file.write("GM[1]\n")
+    file.write(";AB")
     write_stones(file, black)
-    file.write('\n;AW')
+    file.write("\n;AW")
     write_stones(file, white)
-    file.write('\n)\n')
+    file.write("\n)\n")

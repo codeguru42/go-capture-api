@@ -11,7 +11,7 @@ from go_capture.tasks import process_image_task
 
 @require_POST
 def capture(request):
-    image_file = request.FILES['image']
+    image_file = request.FILES["image"]
     output_file = io.StringIO()
     process_image(image_file, output_file)
     output_file.seek(0)
@@ -19,21 +19,21 @@ def capture(request):
     return FileResponse(
         output_file.read(),
         status=201,
-        filename=f'${filename}.sgf',
+        filename=f"${filename}.sgf",
         as_attachment=True,
-        content_type='application/x-go-sgf'
+        content_type="application/x-go-sgf",
     )
 
 
 @require_POST
 def capture_async(request):
-    image_file = request.FILES['image']
-    fcm_token = request.POST['fcm_registration_token']
-    print(f'token: {fcm_token}')
+    image_file = request.FILES["image"]
+    fcm_token = request.POST["fcm_registration_token"]
+    print(f"token: {fcm_token}")
     filename = Path(image_file.name)
     print(filename)
     output_path = settings.IMAGES_DIR / filename
-    with output_path.open('wb') as output_file:
+    with output_path.open("wb") as output_file:
         output_file.write(image_file.read())
     process_image_task.delay(str(output_path.absolute()), fcm_token)
     return HttpResponse(status=201)
@@ -41,7 +41,5 @@ def capture_async(request):
 
 @require_GET
 def health_check(request):
-    body = {
-        'message': 'Healthy!'
-    }
+    body = {"message": "Healthy!"}
     return JsonResponse(body)
