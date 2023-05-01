@@ -19,8 +19,8 @@ from django.urls import path
 from go_capture import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('capture/', views.capture),
-    path('capture_async/', views.capture_async),
-    path('health_check/', views.health_check),
+    path("admin/", admin.site.urls),
+    path("capture/", views.capture),
+    path("capture_async/", views.capture_async),
+    path("health_check/", views.health_check),
 ]

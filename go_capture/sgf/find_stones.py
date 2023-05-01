@@ -56,7 +56,7 @@ def draw_patches(image, coords, color):
 
 def get_clusters(board):
     pixels = np.float32(board.reshape(-1, 3))
-    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, 0.1)
     flags = cv2.KMEANS_RANDOM_CENTERS
     _, labels, palette = cv2.kmeans(pixels, 6, None, criteria, 10, flags)
     width, height, _ = board.shape

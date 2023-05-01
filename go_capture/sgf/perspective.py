@@ -24,7 +24,10 @@ def perspective_transform(image, corners):
 
     # Construct new points to obtain top-down view of image in
     # top_r, top_l, bottom_l, bottom_r order
-    dimensions = np.array([[0, 0], [width - 1, 0], [width - 1, height - 1], [0, height - 1]], dtype="float32")
+    dimensions = np.array(
+        [[0, 0], [width - 1, 0], [width - 1, height - 1], [0, height - 1]],
+        dtype="float32",
+    )
 
     # Convert to Numpy format
     ordered_corners = np.array((top_l, top_r, bottom_r, bottom_l), dtype="float32")
@@ -40,7 +43,9 @@ def get_corners(image):
     copy = image.copy()
     gray = cv2.cvtColor(copy, cv2.COLOR_BGR2GRAY)
     blur = cv2.medianBlur(gray, 3)
-    thresh = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 3)
+    thresh = cv2.adaptiveThreshold(
+        blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 3
+    )
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     sorted_contours = sorted(contours, key=cv2.contourArea, reverse=True)
     return sorted_contours[0]
