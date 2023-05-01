@@ -1,6 +1,7 @@
 # Go Capture API
 
 ![Build](https://github.com/codeguru42/go-capture-api/actions/workflows/build.yaml/badge.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 Go Capture API is a REST API that will generate an SGF file from an image of a Go position.
 
