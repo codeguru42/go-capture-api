@@ -21,3 +21,8 @@ pre-commit install
 ```shell
 docker compose -f docker-compose-dev.yml -p go-capture-api up -d --build
 ```
+
+## Deploy GithubRole
+```shell
+aws cloudformation create-stack --stack-name GoCaptureGithubRole --parameters ParameterKey=Repository,ParameterValue=<github-repo> --template-body "$(cat cloud-formation/github-role.yaml)" --capabilities CAPABILITY_NAMED_IAM
+```
