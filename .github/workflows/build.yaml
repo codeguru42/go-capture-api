@@ -19,15 +19,6 @@ jobs:
           role-to-assume: arn:aws:iam::200049542062:role/gocapture/GithubRole
           aws-region: us-west-1
 
-      - name: Deploy Github Role
-        uses: aws-actions/aws-cloudformation-github-deploy@v1
-        with:
-          name: GoCaptureGithubRole
-          template: cloud-formation/github-role.yaml
-          parameter-overrides: "Repository=${{ github.repository }}"
-          capabilities: CAPABILITY_NAMED_IAM
-          no-fail-on-empty-changeset: 1
-
       - name: Set ECR Stack Name
         id: ecr-stack-name
         run: echo ECR_STACK_NAME=GoCaptureECR >> $GITHUB_OUTPUT
