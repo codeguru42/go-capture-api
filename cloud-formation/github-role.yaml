@@ -16,7 +16,7 @@ Resources:
             Condition:
               StringLike:
                 token.actions.githubusercontent.com:sub: !Sub repo:${Repository}:*
-      Path: /gocapture/
+      Path: /go_capture/
       Policies:
         - PolicyName: CloudFormationPolicy
           PolicyDocument: {
@@ -43,18 +43,33 @@ Resources:
               {
                 "Effect": Allow,
                 "Action": [
+                  iam:GetRole,
+                  iam:GetUser,
+                  iam:ListAccessKeys,
+                ],
+                "Resource": "arn:aws:iam::200049542062:user/go_capture/*"
+              },
+            ]
+          }
+        - PolicyName: IamDeployUserPolicy
+          PolicyDocument: {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": Allow,
+                "Action": [
                   iam:CreateUser,
                   iam:DeleteUser,
                   iam:DeleteUserPolicy,
                   iam:GetRole,
                   iam:GetUser,
-                  iam:ListAccessKeys,
                   iam:PutRolePolicy,
                   iam:PutRoleRole,
                   iam:PutUserPolicy,
                   iam:UpdateAssumeRolePolicy,
+                  iam:ListAccessKeys,
                 ],
-                "Resource": "*"
+                "Resource": "arn:aws:iam::200049542062:user/go_capture/beta_deploy"
               },
             ]
           }
