@@ -19,7 +19,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
         with:
-          role-to-assume: arn:aws:iam::200049542062:role/gocapture/GithubRole
+          role-to-assume: arn:aws:iam::200049542062:role/go_capture/GithubRole
           aws-region: us-west-1
 
       - name: Deploy ECS Cluster
