@@ -4,7 +4,7 @@ services:
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
     env_file:
-      - .env
+      - env/prod.env
     image: ${image}:${tag}
     ports:
       - 8000:8000
@@ -18,7 +18,7 @@ services:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
       - CELERY_RESULT_BACKEND=rpc
     env_file:
-      - .env
+      - env/prod.env
     image: ${image}:${tag}
     volumes:
       - media:/api/media

@@ -3,7 +3,7 @@ services:
     build: .
     command: "poetry run python3 /api/manage.py runserver 0.0.0.0:8000"
     env_file:
-      - .env
+      - env/dev.env
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
     ports:
@@ -19,7 +19,7 @@ services:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
       - CELERY_RESULT_BACKEND=rpc
     env_file:
-      - .env
+      - env/dev.env
     volumes:
       - .:/api
   broker:
