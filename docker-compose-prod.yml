@@ -1,17 +1,16 @@
 services:
   api:
-    image: ${image}:${tag}
     command: "poetry run gunicorn go_capture.wsgi:application --bind 0.0.0.0:8000 -t 60"
-    env_file:
-      - .env
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
+    env_file:
+      - .env
+    image: ${image}:${tag}
     ports:
       - 8000:8000
     volumes:
       - media:/api/media
   worker:
-    image: ${image}:${tag}
     command: "poetry run celery -A go_capture.tasks worker"
     depends_on:
       - broker
@@ -20,6 +19,7 @@ services:
       - CELERY_RESULT_BACKEND=rpc
     env_file:
       - .env
+    image: ${image}:${tag}
     volumes:
       - media:/api/media
   broker:
