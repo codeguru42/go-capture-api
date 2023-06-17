@@ -30,3 +30,8 @@ services:
 
 volumes:
   media:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $MEDIA_ROOT
