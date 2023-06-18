@@ -8,6 +8,8 @@ services:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
     ports:
       - 8000:8000
+    secrets:
+      - firebase-credentials
     volumes:
       - .:/api
   worker:
@@ -20,6 +22,8 @@ services:
       - CELERY_RESULT_BACKEND=rpc
     env_file:
       - env/dev.env
+    secrets:
+      - firebase-credentials
     volumes:
       - .:/api
   broker:
@@ -27,3 +31,7 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+
+secrets:
+  firebase-credentials:
+    file: $FIREBASE_CREDENTIALS_FILE
