@@ -3,11 +3,15 @@ services:
     command: "poetry run gunicorn go_capture.wsgi:application --bind 0.0.0.0:8000 -t 60"
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
+      - FIREBASE_CREDENTIALS_FILE=/run/secrets/firebase-credentials
+      - MEDIA_ROOT=/api/media
     env_file:
       - env/prod.env
     image: ${image}:${tag}
     ports:
       - 8000:8000
+    secrets:
+      - firebase-credentials
     volumes:
       - media:/api/media
   worker:
@@ -17,9 +21,13 @@ services:
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
       - CELERY_RESULT_BACKEND=rpc
+      - FIREBASE_CREDENTIALS_FILE=/run/secrets/firebase-credentials
+      - MEDIA_ROOT=/api/media
     env_file:
       - env/prod.env
     image: ${image}:${tag}
+    secrets:
+      - firebase-credentials
     volumes:
       - media:/api/media
   broker:
@@ -35,3 +43,7 @@ volumes:
       type: none
       o: bind
       device: $MEDIA_ROOT
+
+secrets:
+  firebase-credentials:
+    file: $FIREBASE_CREDENTIALS_FILE
