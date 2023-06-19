@@ -1,7 +1,8 @@
 #!/bin/bash
-export IMAGE=$1
-export TAG=$2
+export ENV_FILE=$1
+export IMAGE=$2
+export TAG=$3
 echo echo "Take down old api version..." \
   && docker compose -f docker-compose-prod.yml down \
   && echo "Bring up new api version..." \
-  && docker compose -f docker-compose-prod.yml -p go-capture-api up -d
+  && docker compose -f docker-compose-prod.yml -p go-capture-api --env-file $ENV_FILE up -d
