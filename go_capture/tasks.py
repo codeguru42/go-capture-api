@@ -1,5 +1,6 @@
 import io
 import os
+from pathlib import Path
 
 import firebase_admin
 from celery import Celery
@@ -45,7 +46,7 @@ def process_image_task(image_filename, fcm_token):
     message = messaging.Message(
         data={
             "sgf": sgf_data,
-            "image_filename": image_filename,
+            "image_filename": Path(image_filename).name,
         },
         token=fcm_token,
     )
