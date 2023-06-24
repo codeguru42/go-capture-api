@@ -45,6 +45,7 @@ def process_image_task(image_filename, fcm_token):
     message = messaging.Message(
         data={
             "sgf": sgf_data,
+            "image_filename": image_filename,
         },
         token=fcm_token,
     )
