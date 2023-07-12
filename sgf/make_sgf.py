@@ -6,7 +6,7 @@ def write_stones(file, stones):
 def make_sgf(file, black, white, to_play):
     file.write("(;FF[4]\n")
     file.write("GM[1]\n")
-    file.write(";AB")
+    file.write("AB")
     write_stones(file, black)
     file.write("\nAW")
     write_stones(file, white)
