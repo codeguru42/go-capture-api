@@ -7,7 +7,7 @@ from celery import Celery
 from django.conf import settings
 from firebase_admin import credentials, messaging
 
-from go_capture.sgf.process_image import process_image
+from sgf.process_image import process_image
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "go_capture.settings")
