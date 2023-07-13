@@ -4,7 +4,7 @@ from pathlib import Path
 import cv2
 import pytest
 
-from go_capture.sgf import find_stones, make_sgf, perspective
+from sgf import find_stones, make_sgf, perspective
 
 
 def get_images(image_folder):
