@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-from go_capture.sgf import perspective, find_stones
-from go_capture.sgf.make_sgf import make_sgf
+from sgf import perspective, find_stones
+from sgf.make_sgf import make_sgf
 
 
 def process_image(image_file, output_file):
