@@ -1,6 +1,6 @@
 services:
   api:
-    command: "poetry run gunicorn go_capture.wsgi:application --bind 0.0.0.0:8000 -t 60"
+    command: "poetry run uvicorn main:app --host 0.0.0.0 --port 8000"
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@broker:5672
       - FIREBASE_CREDENTIALS_FILE=/run/secrets/firebase-credentials
@@ -15,7 +15,7 @@ services:
     volumes:
       - media:/api/media
   worker:
-    command: "poetry run celery -A go_capture.tasks worker"
+    command: "poetry run celery -A tasks worker"
     depends_on:
       - broker
     environment:

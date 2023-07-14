@@ -1,16 +1,12 @@
 import io
-import os
 from pathlib import Path
 
 import firebase_admin
 from celery import Celery
-from django.conf import settings
 from firebase_admin import credentials, messaging
 
-from go_capture.sgf.process_image import process_image
-
-# Set the default Django settings module for the 'celery' program.
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "go_capture.settings")
+import settings
+from sgf.process_image import process_image
 
 app = Celery("go_capture")
 
@@ -18,7 +14,7 @@ app = Celery("go_capture")
 # the configuration object to child processes.
 # - namespace='CELERY' means all celery-related configuration keys
 #   should have a `CELERY_` prefix.
-app.config_from_object("django.conf:settings", namespace="CELERY")
+app.config_from_object("settings", namespace="CELERY")
 
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()
