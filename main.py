@@ -1,5 +1,5 @@
 import io
-from enum import Enum
+from enum import Enum, StrEnum
 from pathlib import Path
 from typing import Annotated
 
@@ -12,7 +12,7 @@ from tasks import process_image_task
 app = FastAPI()
 
 
-class Color(str, Enum):
+class Color(StrEnum):
     BLACK = "B"
     WHITE = "W"
 
