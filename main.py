@@ -1,20 +1,15 @@
 import io
-from enum import Enum, StrEnum
 from pathlib import Path
 from typing import Annotated
 
 from fastapi import FastAPI, File, UploadFile, Form
 
 import settings
+from sgf.make_sgf import Color
 from sgf.process_image import process_image
 from tasks import process_image_task
 
 app = FastAPI()
-
-
-class Color(StrEnum):
-    BLACK = "B"
-    WHITE = "W"
 
 
 @app.get("/health_check/")

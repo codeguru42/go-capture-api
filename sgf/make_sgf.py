@@ -1,3 +1,11 @@
+from enum import StrEnum
+
+
+class Color(StrEnum):
+    BLACK = "B"
+    WHITE = "W"
+
+
 def write_stones(file, stones):
     for x, y in stones:
         file.write(f'[{chr(x + ord("a"))}{chr(y + ord("a"))}]')
