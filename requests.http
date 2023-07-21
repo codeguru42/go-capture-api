@@ -23,6 +23,12 @@ Content-Type: text/plain
 foobar
 
 --WebAppBoundary
+Content-Disposition: form-data; name="to_play"
+Content-Type: text/plain
+
+W
+
+--WebAppBoundary
 Content-Disposition: form-data; name="image"; filename="board.jpg"
 Content-Type: image/jpeg
 

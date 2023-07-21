@@ -15,7 +15,7 @@ uvicorn = "^0.22.0"
 python-multipart = "^0.0.6"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.3.0"
+black = {extras = ["d"], version = "^23.7.0"}
 pre-commit = "^3.3.3"
 pytest = "^7.4.0"
 

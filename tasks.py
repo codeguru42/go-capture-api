@@ -29,12 +29,12 @@ def debug_task(self):
 
 
 @app.task
-def process_image_task(image_filename, fcm_token):
+def process_image_task(image_filename, fcm_token, to_play):
     print(f"token: {fcm_token}")
     print(f"Processing {image_filename}")
     with open(image_filename, "rb") as image_file:
         sgf_buffer = io.StringIO()
-        process_image(image_file, sgf_buffer)
+        process_image(image_file, sgf_buffer, to_play)
 
     sgf_buffer.seek(0)
     sgf_data = sgf_buffer.read()

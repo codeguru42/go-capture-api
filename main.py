@@ -5,6 +5,7 @@ from typing import Annotated
 from fastapi import FastAPI, File, UploadFile, Form
 
 import settings
+from sgf.make_sgf import Color
 from sgf.process_image import process_image
 from tasks import process_image_task
 
@@ -17,9 +18,12 @@ def health_check():
 
 
 @app.post("/capture/")
-def capture(image: Annotated[UploadFile, File()]):
+def capture(
+    image: Annotated[UploadFile, File()],
+    to_play: Annotated[Color, Form()] = Color.BLACK,
+):
     output_file = io.StringIO()
-    process_image(image.file, output_file)
+    process_image(image.file, output_file, to_play)
     output_file.seek(0)
     return {
         "sgf": output_file.read(),
@@ -29,10 +33,14 @@ def capture(image: Annotated[UploadFile, File()]):
 
 @app.post("/capture_async/")
 def capture_async(
-    image: Annotated[UploadFile, File()], fcm_registration_token: Annotated[str, Form()]
+    image: Annotated[UploadFile, File()],
+    fcm_registration_token: Annotated[str, Form()],
+    to_play: Annotated[Color, Form()] = Color.BLACK,
 ):
     filename = Path(image.filename)
     output_path = settings.IMAGES_DIR / filename
     with output_path.open("wb") as output_file:
         output_file.write(image.file.read())
-    process_image_task.delay(str(output_path.absolute()), fcm_registration_token)
+    process_image_task.delay(
+        str(output_path.absolute()), fcm_registration_token, to_play
+    )
