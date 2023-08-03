@@ -16,6 +16,7 @@ python-multipart = "^0.0.6"
 
 [tool.poetry.group.dev.dependencies]
 black = {extras = ["d"], version = "^23.7.0"}
+mypy = "^1.4.1"
 pre-commit = "^3.3.3"
 pytest = "^7.4.0"
 
